@@ -75,6 +75,7 @@ export function WeatherPanel() {
   } = useSelector((state) => state.weather);
 
   // Format time + date for display
+  const formattedTime = time;
   const formattedDate = date;
 
 
