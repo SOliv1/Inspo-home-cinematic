@@ -704,12 +704,20 @@ html {
 }
 
 /* Divider */
+
 .section-divider {
   width: 100%;
   height: 1px;
-  background: rgba(255, 255, 255, 0.25);
-
+  margin: 2rem 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  opacity: 0.7;
 }
+
 
 .app-kicker {
   color: #9ca3af;
@@ -1254,7 +1262,7 @@ transition: background 2s ease, backdrop-filter 2s ease;
   }
 }
 
-/* === FOOTER STYLES ======================================
+/* === FOOTER STYLES ======================================*/
 
 .site-footer {
   text-align: center;
@@ -1263,12 +1271,56 @@ transition: background 2s ease, backdrop-filter 2s ease;
   color: #555;
   font-size: 0.9rem;
 }
-*/
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #ffd1dc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.back-to-top:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+
 .social-icons {
   margin-top: 15px;
   height: 40px; /* reserves space even before icons are added */
 }
 
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-icon {
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  color: #fffaf3;
+  backdrop-filter: blur(10px) saturate(160%);
+  background: rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.social-icon.instagram {
+  border-left: 4px solid #e1306c;
+}
+
+.social-icon.facebook {
+  border-left: 4px solid #1877f2;
+}
 
 /* Responsive tweak for smaller widths */
 @media (max-width: 768px) {

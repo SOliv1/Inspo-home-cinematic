@@ -161,12 +161,14 @@ function App() {
 
               <header className="app-header">
 
-                <nav class="mini-menu"> 
-                  <a href="#todos">To‑Dos</a> 
-                  <a href="#thoughts">Thoughts</a> 
-                  <a href="#weather">Weather</a> 
+                <nav class="mini-menu">
+                  <div id="top"></div>
+
+                  <a href="#todos">To‑Dos</a>
+                  <a href="#thoughts">Thoughts</a>
+                  <a href="#weather">Weather</a>
                   <a href="#time">Time</a>
-                  <a href="#footer">Footer</a> 
+                  <a href="#footer">Footer</a>
                 </nav>
 
                 <div className={greetingClass}>
@@ -344,6 +346,10 @@ function App() {
               </section>
 
             </div>
+            <div className="section-divider"></div>
+
+
+
 
             {/* RIGHT COLUMN */}
             <div className="right-column">
@@ -356,19 +362,44 @@ function App() {
           </div>
 
           <footer className="QuotesFooter">
-            <footer id="footer">
-              {/* footer content */}
-            </footer>
+            <a href="#top" className="back-to-top">Back to top ↑</a>
+            <div className="section-divider"></div>
 
-            <p className="inspo-quote fade-on-scroll">
-              “The only way to do great work is to love what you do.”
-            </p>
+
+            <div id="footer">
+              <p className="inspo-quote fade_on_scroll">
+                "The Only way to do great work is to love what you do."
+              </p>
+            </div>
             <p className="quote-author">– Steve Jobs</p>
             <div className="siteFooter">
-              <p>Made with care by Sara for KUK @ 2026</p>
+                <p>Made with care by Sara for KUK @ 2026</p>
             </div>
+
+            <div className="section-divider"></div>
+
             <div class="social-icons">
                 {/* Add icons later */}
+              <div className="social-links">
+                <a
+                    href="https://instagram.com/so.co13"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon instagram"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://facebook.com/sara.J.oliver.7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon facebook"
+                >
+                    Facebook
+                </a>
+              </div>
+
             </div>
           </footer>
         </div>

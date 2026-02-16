@@ -693,9 +693,16 @@
   color: #4b5563;
 }
 
+
+
+
+
+
 /* Small interactive feel on hover */
+
 .weather-card {
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s
+  border: 1px solid transparent; /* prevents flicker */
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .weather-card:hover {
@@ -703,6 +710,17 @@
   box-shadow:
     0 22px 55px rgba(15, 23, 42, 0.22),
     0 0 0 1px rgba(148, 163, 184, 0.22);
-  background: rgba(255, 255, 255, 0.95);
 
+}
+
+.weather-card.day:hover {
+  background: rgba(var(--day-color-rgb), 0.25);
+}
+
+.weather-card.evening:hover {
+  background: rgba(var(--evening-color-rgb), 0.25);
+}
+
+.weather-card.night:hover {
+  background: rgba(var(--night-color-rgb), 0.25);
 }

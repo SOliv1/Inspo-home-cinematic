@@ -22,7 +22,9 @@ import "./WeatherCard.css";
 // -------------------------
 // WeatherCard
 // -------------------------
-export default function WeatherCard({ tempC, condition, icon }) {
+
+export default function WeatherCard({ tempC, condition, icon, moodKey }) {
+
   const getTempColor = () => {
     if (condition.includes("sun")) return "#FFB84C";
     if (condition.includes("cloud")) return "#6EC6FF";
@@ -35,11 +37,10 @@ export default function WeatherCard({ tempC, condition, icon }) {
   };
 
   return (
-    <div className="weather-card fade-scale">
+    <div className={`weather-card fade-scale ${moodKey}`}>
       <div className="weather-icon-wrapper">
         {icon}
       </div>
-
 
       <div
         className="temperature"
@@ -55,7 +56,6 @@ export default function WeatherCard({ tempC, condition, icon }) {
     </div>
   );
 }
-
 
 // -------------------------
 // WeatherPanel
@@ -83,15 +83,16 @@ export function WeatherPanel() {
   // 🌦️ Developer-only weather test state
   const [testWeather, setTestWeather] = useState(null);
   const [testTimeOfDay, setTestTimeOfDay] = useState(null);
-  const [testGreeting, setTestGreeting] = useState(null); 
-
-
+  const [testGreeting, setTestGreeting] = useState(null);
 
   // Time of day logic
   const hour = new Date().getHours();
- // Time of day logic (with test override)
 
- let timeOfDay;
+// -------------------------
+// TIME OF DAY → timeOfDay
+// -------------------------
+
+let timeOfDay;
 
 if (testTimeOfDay) {
   timeOfDay = testTimeOfDay;   // manual override
@@ -107,7 +108,41 @@ if (testTimeOfDay) {
 }
 
 
- const iconColorMap = {
+// -------------------------
+// timeOfDay → moodKey
+// -------------------------
+
+let moodKey = "";
+
+switch (timeOfDay) {
+  case "early morning":
+    moodKey = "earlymorning";
+    break;
+  case "sunrise":
+    moodKey = "sunrise";
+    break;
+  case "day":
+    moodKey = "day";
+    break;
+  case "sunset":
+    moodKey = "evening";
+    break;
+  case "night":
+    moodKey = "night";
+    break;
+  case "late night":
+    moodKey = "latenight";
+    break;
+  default:
+    moodKey = "day";
+}
+
+
+// -------------------------
+// timeOfDay → iconColorMap
+// -------------------------
+
+const iconColorMap = {
   "early morning": "#D7C7FF",
   sunrise: "#FFB38A",
   day: "#6EC6FF",
@@ -191,6 +226,7 @@ function getGreetingFromTime(timeOfDay) {
       blendedIcon = blendedIconMap[displayedCondition] || (
         <WiCloudy size={64} color={finalColor} />
 );
+
 
     }
     // 🌈🌦️ END INSERTED BLOCK
@@ -283,6 +319,8 @@ function getGreetingFromTime(timeOfDay) {
           {timeOfDay === "night" && <span>🌙</span>}
         </div>
 
+
+
         {/* 🌈 TEST MODE: blended weather icon */}
         {config.TEST_WEATHER_ICON_BLEND && (
         <div style={{ marginBottom: "12px" }}>
@@ -296,6 +334,8 @@ function getGreetingFromTime(timeOfDay) {
             tempC={tempC}
             condition={displayedCondition}
             icon={blendedIcon}
+            moodKey={moodKey}
+
           />
         </div>
       </div>
