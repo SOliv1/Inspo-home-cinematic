@@ -655,7 +655,7 @@ html {
   color: #6b7280;
   margin: 0 0 4px;
 }
-.app-title {
+/*.app-title {
   font-size: 2rem;
   margin: 0;
 
@@ -669,7 +669,7 @@ html {
   -webkit-backdrop-filter: blur(3px);
   padding: 0.3rem 0.75rem;
   border-radius: 8px;
-}
+} */
 
 
 @keyframes titleFade {
@@ -908,13 +908,52 @@ transition: background 2s ease, backdrop-filter 2s ease;
   margin-top: 1rem;
 }
 
+
+/* Journal puffs moods */
+
+
 .journal-puff {
-  opacity: 0;
-  transform: translateY(10px) scale(0.95);
-  animation: bubbleIn 0.4s ease-out forwards;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+  backdrop-filter: blur(2px);
 }
 
-.journal-puff.sunrise {
+/* DAY */
+.journal-puff.day {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--day-color-rgb), 0.22),
+    rgba(var(--day-color-rgb), 0.14)
+  );
+  border-left: 4px solid var(--day-color);
+  box-shadow: inset 0 0 8px rgba(var(--day-color-rgb), 0.25);
+}
+
+/* EVENING */
+.journal-puff.evening {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--evening-color-rgb), 0.22),
+    rgba(var(--evening-color-rgb), 0.14)
+  );
+  border-left: 4px solid var(--evening-color);
+  box-shadow: inset 0 0 8px rgba(var(--evening-color-rgb), 0.25);
+}
+
+/* NIGHT */
+.journal-puff.night {
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--night-color-rgb), 0.22),
+    rgba(var(--night-color-rgb), 0.14)
+  );
+  border-left: 4px solid var(--night-color);
+  box-shadow: inset 0 0 8px rgba(var(--night-color-rgb), 0.25);
+}
+
+
+.journal-puff.day-sunrise {
   box-shadow: 0 0 12px rgba(255, 180, 80, 0.4);
 }
 
@@ -922,7 +961,7 @@ transition: background 2s ease, backdrop-filter 2s ease;
   box-shadow: 0 0 12px rgba(255, 255, 120, 0.4);
 }
 
-.journal-puff.sunset {
+.journal-puff.evening-sunset {
   box-shadow: 0 0 12px rgba(255, 120, 120, 0.4);
 }
 
@@ -936,7 +975,7 @@ transition: background 2s ease, backdrop-filter 2s ease;
 
 .journal-puff.earlyMorning {
   box-shadow: 0 0 12px rgba(180, 220, 255, 0.4);
-}
+} 
 
 @keyframes bubbleIn {
   0% {
@@ -1047,16 +1086,19 @@ transition: background 2s ease, backdrop-filter 2s ease;
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.journal-entries {
+  border: 2px solid var(--mood-color);
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--mood-bg);
+  box-shadow: 0 0 12px var(--mood-glow);
+}
 
 .journal-empty {
-  padding: 14px 18px;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  opacity: 0.8;
+  opacity: 0.7;
+  font-style: italic;
   text-align: center;
-  margin-bottom: 12px;
-  animation: fadeIn 0.4s ease-out forwards;
-  transform: translateY(4px);
+  padding: 1rem 0;
 }
 
 /* Mood glow */
