@@ -670,18 +670,19 @@ background-position: top center;
    SPRING
 --------------------------*/
 
-/* SPRING — Soft Green Alpine (Day) 
+ /*SPRING — Soft Green Alpine (Day)*/
 .app-shell.spring.day,
 .app-shell.spring.sunrise,
 .app-shell.spring.earlyMorning {
-  background-image: url("YOUR_SOFT_GREEN_ALPINE_DAY_URL");
+  background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-}*/
+
+}
 
 
-/* SPRING — Soft Green Alpine (Night) 
+/* SPRING — Soft Green Alpine (Night)
 .app-shell.spring.sunset,
 .app-shell.spring.night,
 .app-shell.spring.lateNight {
@@ -691,7 +692,7 @@ background-position: top center;
   background-repeat: no-repeat;
 }*/
 
-/* SPRING — Bright Fresh (Day) 
+/* SPRING — Bright Fresh (Day)
 .app-shell.spring.day,
 .app-shell.spring.sunrise,
 .app-shell.spring.earlyMorning {
@@ -701,7 +702,7 @@ background-position: top center;
   background-repeat: no-repeat;
 }
 
-/* SPRING — Bright Fresh (Night) 
+/* SPRING — Bright Fresh (Night)
 .app-shell.spring.sunset,
 .app-shell.spring.night,
 .app-shell.spring.lateNight {
