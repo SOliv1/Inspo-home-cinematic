@@ -716,8 +716,12 @@ background-position: top center;
 .app-shell.autumn.sunset,
 .app-shell.autumn.night,
 .app-shell.autumn.lateNight {
-  background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+  background-image: url("https://images.unsplash.com/photo-1664736607881-51fca3698993?q=80&w=2786&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
+
 
 /*SEASON BUTTONS*/
 /* Base button style (already soft & glassy) */
