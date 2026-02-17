@@ -521,6 +521,7 @@ html {
   transition: background-image 1.2s ease-in-out;
 }
 
+
 /* --- SEASON CONTROLS --- */
 
 /* Container */
@@ -642,12 +643,20 @@ html {
 /* -------------------------
    WINTER
 --------------------------*/
+/*Winter */
+/*.app-shell.winter {
+  background-image: url("");
+  background-image: url("https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1600&q=80");
+  background-position: top center;
+}*/
 
 /* Winter Day */
+/*.app-shell.mood.winter,*/
 .app-shell.winter.day,
 .app-shell.winter.sunrise,
 .app-shell.winter.earlyMorning {
-  background-image: url("https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1600&q=80");
+background-image: url("https://images.unsplash.com/photo-1770753105322-fdca548966b0?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+background-position: top center;
 }
 
 /* Winter Night */
@@ -660,20 +669,48 @@ html {
 /* -------------------------
    SPRING
 --------------------------*/
-t
-/* Spring Day */
+
+/* SPRING — Soft Green Alpine (Day) 
 .app-shell.spring.day,
 .app-shell.spring.sunrise,
 .app-shell.spring.earlyMorning {
-  background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80");
-}
+  background-image: url("YOUR_SOFT_GREEN_ALPINE_DAY_URL");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}*/
 
-/* Spring Night */
+
+/* SPRING — Soft Green Alpine (Night) 
 .app-shell.spring.sunset,
 .app-shell.spring.night,
 .app-shell.spring.lateNight {
-  background-image: url("https://images.unsplash.com/?auto=format&fit=crop&w=1600&q=80");
+  background-image: url("YOUR_SOFT_GREEN_ALPINE_NIGHT_URL");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}*/
+
+/* SPRING — Bright Fresh (Day) 
+.app-shell.spring.day,
+.app-shell.spring.sunrise,
+.app-shell.spring.earlyMorning {
+  background-image: url("YOUR_BRIGHT_FRESH_SPRING_DAY_URL");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+
+/* SPRING — Bright Fresh (Night) 
+.app-shell.spring.sunset,
+.app-shell.spring.night,
+.app-shell.spring.lateNight {
+  background-image: url("YOUR_BRIGHT_FRESH_SPRING_NIGHT_URL");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 /* -------------------------
    SUMMER
