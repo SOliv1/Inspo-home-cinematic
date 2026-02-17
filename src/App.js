@@ -124,6 +124,22 @@ function App() {
 
   // React state: starts with automatic season
   const [seasonKey, setSeasonKey] = useState(getSeasonFromMonth());
+  const [manualSeason, setManualSeason] = useState(false);
+
+  useEffect(() => {
+    if (!manualSeason) {
+      setSeasonKey(getSeasonFromMonth());
+    }
+  }, [manualSeason]);
+
+  useEffect(() => {
+    const shell = document.querySelector(".app-shell");
+    shell.classList.add("fade-transition");
+    const timeout = setTimeout(() => shell.classList.remove("fade-transition"), 800);
+    return () => clearTimeout(timeout);
+  }, [seasonKey]);
+
+
 
 
 
@@ -169,20 +185,77 @@ function App() {
     <div className={`app-body ${greetingClass}`}>
 
       <main className={`app-shell ${seasonKey} ${moodKey}`}>
-        <div className="season-buttons">
-            {["winter", "spring", "summer", "autumn"].map(s => (
+        <div className="season-controls">
+
+          <div className="season-buttons">
             <button
-              key={s}
-              className={seasonKey === s ? "active" : ""}
-              onClick={() => setSeasonKey(s)}
+              className={`winter ${seasonKey === "winter" ? "active" : ""}`}
+              onClick={() => {
+                setManualSeason(true);
+                setSeasonKey("winter");
+              }}
             >
-              {s.charAt(0).toUpperCase() + s.slice(1)}
+              ❄️ Winter
             </button>
-          ))}
-        </div>
 
-        <div className="frost-overlay"></div>
+            <button
+              className={`spring ${seasonKey === "spring" ? "active" : ""}`}
+              onClick={() => {
+                setManualSeason(true);
+                setSeasonKey("spring");
+              }}
+            >
+              🌸 Spring
+            </button>
 
+            <button
+              className={`summer ${seasonKey === "summer" ? "active" : ""}`}
+              onClick={() => {
+                setManualSeason(true);
+                setSeasonKey("summer");
+              }}
+            >
+              ☀️ Summer
+            </button>
+
+            <button
+              className={`autumn ${seasonKey === "autumn" ? "active" : ""}`}
+              onClick={() => {
+                setManualSeason(true);
+                setSeasonKey("autumn");
+              }}
+            >
+              🍁 Autumn
+            </button>
+          </div>
+
+          <div className="season-mode">
+            <label>
+              <input
+                type="checkbox"
+                checked={manualSeason}
+                onChange={() => setManualSeason(!manualSeason)}
+              />
+              Manual Season
+            </label>
+
+            {!manualSeason && (
+              <button
+                  className="auto-button"
+                  onClick={() => setSeasonKey(getSeasonFromMonth())}
+              >
+                  Auto
+                </button>
+              )}
+            </div>
+
+          </div>
+
+
+
+
+
+      <div className="frost-overlay"></div>
         <div className="app-content">
           <div className="main-grid">
             {/* LEFT COLUMN */}

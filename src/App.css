@@ -511,102 +511,261 @@ html {
   animation: sunrisePulse 12s ease-in-out infinite;
 }
 
+/* BASE */
 .app-shell {
   min-height: 100vh;
   padding: 24px;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transition: background-image 1s ease-in-out;
-  position: relative;
-  z-index: 1;
+  transition: background-image 1.2s ease-in-out;
 }
 
-/* WINTER */
-/* WINTER — DAYTIME */
+/* --- SEASON CONTROLS --- */
+
+/* Container */
+.season-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Button row */
+.season-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Base button style */
+.season-buttons button {
+  padding: 6px 16px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px) saturate(160%);
+  color: #fffaf3;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover */
+.season-buttons button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Active */
+.season-buttons button.active {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Seasonal accent borders */
+.season-buttons button.winter { border-left: 4px solid #8ecaff; }
+.season-buttons button.spring { border-left: 4px solid #a8e6a3; }
+.season-buttons button.summer { border-left: 4px solid #ffd27f; }
+.season-buttons button.autumn { border-left: 4px solid #ffb07c; }
+
+/* Mood‑responsive glow */
+.app-shell.earlyMorning .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6);
+}
+
+.app-shell.sunrise .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 180, 120, 0.6);
+}
+
+.app-shell.day .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.app-shell.sunset .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 150, 80, 0.6);
+}
+
+.app-shell.night .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(120, 160, 255, 0.6);
+}
+
+.app-shell.lateNight .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(180, 120, 255, 0.6);
+}
+
+/* Auto/Manual toggle */
+.season-mode {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fffaf3;
+  font-size: 0.9rem;
+}
+
+.auto-button {
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: #fffaf3;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.auto-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Fade transition */
+.app-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.app-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: -1;
+}
+
+.app-shell.fade-transition::before {
+  opacity: 1;
+}
+
+
+
+
+/* -------------------------
+   WINTER
+--------------------------*/
+
+/* Winter Day */
 .app-shell.winter.day,
 .app-shell.winter.sunrise,
 .app-shell.winter.earlyMorning {
   background-image: url("https://images.unsplash.com/photo-1482192596544-9eb780fc7f66?auto=format&fit=crop&w=1600&q=80");
 }
 
-/* WINTER — NIGHTTIME */
+/* Winter Night */
 .app-shell.winter.sunset,
 .app-shell.winter.night,
 .app-shell.winter.lateNight {
   background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80");
 }
 
-/* SPRING */
+/* -------------------------
+   SPRING
+--------------------------*/
+
+/* Spring Day */
 .app-shell.spring.day,
 .app-shell.spring.sunrise,
 .app-shell.spring.earlyMorning {
   background-image: url("https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1600&q=80");
 }
 
+/* Spring Night */
 .app-shell.spring.sunset,
 .app-shell.spring.night,
 .app-shell.spring.lateNight {
- background-image: url("https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1600&q=80");
- }
+  background-image: url("https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1600&q=80");
+}
 
- /* SUMMER */
+/* -------------------------
+   SUMMER
+--------------------------*/
+
+/* Summer Day */
 .app-shell.summer.day,
 .app-shell.summer.sunrise,
 .app-shell.summer.earlyMorning {
- background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80");
- }
+  background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80");
+}
 
+/* Summer Night */
 .app-shell.summer.sunset,
 .app-shell.summer.night,
 .app-shell.summer.lateNight {
- background-image: url("https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1600&q=80");
- }
+  background-image: url("https://images.unsplash.com/photo-1500048993953-d23a436266cf?auto=format&fit=crop&w=1600&q=80");
+}
 
+/* -------------------------
+   AUTUMN
+--------------------------*/
 
-/* AUTUMN */
+/* Autumn Day */
 .app-shell.autumn.day,
 .app-shell.autumn.sunrise,
 .app-shell.autumn.earlyMorning {
- background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80");
- }
+  background-image: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80");
+}
 
+/* Autumn Night */
 .app-shell.autumn.sunset,
 .app-shell.autumn.night,
 .app-shell.autumn.lateNight {
- background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
+  background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80");
 }
 
-.season-buttons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-/* Season Buttons for Images*/
+/*SEASON BUTTONS*/
+/* Base button style (already soft & glassy) */
 .season-buttons button {
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 6px 16px;
+  border-radius: 10px;
   border: none;
   background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
   color: #fffaf3;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
+/* Hover */
 .season-buttons button:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
 }
 
+/* Active (selected) */
 .season-buttons button.active {
   background: rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Mood‑responsive glow */
+.app-shell.earlyMorning .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6);
+}
+
+.app-shell.sunrise .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 180, 120, 0.6);
+}
+
+.app-shell.day .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.app-shell.sunset .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(255, 150, 80, 0.6);
+}
+
+.app-shell.night .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(120, 160, 255, 0.6);
+}
+
+.app-shell.lateNight .season-buttons button.active {
+  box-shadow: 0 0 10px rgba(180, 120, 255, 0.6);
 }
 
 
+
+
+
+/*APP CONTENT*/
 .app-content {
   max-width: 1200px; /* gives room for two columns */
   margin: 0 auto;
