@@ -1,6 +1,9 @@
 #This Project deployed on Netlify. view deployment [Here](https://inspo-home.netlify.app/)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f01c4e03-ab03-45dd-9d6e-3a98f4846ec4/deploy-status?branch=master)](https://app.netlify.com/projects/inspo-home/deploys)
+<a href="https://wakatime.com/badge/user/b1df3236-cf2d-4081-bd32-1df83d414551/project/17f1fdb1-08fa-4121-b377-7bb57a9f2263"><img src="https://wakatime.com/badge/user/b1df3236-cf2d-4081-bd32-1df83d414551/project/17f1fdb1-08fa-4121-b377-7bb57a9f2263.svg" alt="wakatime"></a>
+[![wakatime](https://wakatime.com/badge/user/b1df3236-cf2d-4081-bd32-1df83d414551/project/17f1fdb1-08fa-4121-b377-7bb57a9f2263.svg)](https://wakatime.com/badge/user/b1df3236-cf2d-4081-bd32-1df83d414551/project/17f1fdb1-08fa-4121-b377-7bb57a9f2263)
+
 
 # Getting Started with Create React App
 
