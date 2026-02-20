@@ -1139,32 +1139,6 @@ transition: background 2s ease, backdrop-filter 2s ease;
 
 /* === JOURNAL ENTRIES STYLES ====================================== */
 
-/*.journal-entries {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  overflow-y: auto;
-} */
-
-.journal-entries {
-  width: 100%;
-  max-width: 500px; /* or whatever your design uses */
-  min-height: 180px;
-  max-height: 220px;
-  padding: 1rem;
-  border: 2px solid var(--mood-color);
-  border-radius: 12px;
-  background: var(--mood-bg);
-  box-shadow: 0 0 12px var(--mood-glow);
-  overflow-y: auto; /* keeps text inside */
-  word-wrap: break-word;
-  box-sizing: border-box;
-}
 
 .journal-input-wrapper {
   display: flex;
@@ -1173,98 +1147,59 @@ transition: background 2s ease, backdrop-filter 2s ease;
   margin-top: 1rem;
 }
 
+.journal-entries {
+  width: 100%;
+  max-width: 500px;
+  min-height: 180px;
+  max-height: 220px;
+  padding: 1.2rem;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
 .journal-entry {
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.8rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.9rem;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   word-wrap: break-word;
   overflow-wrap: break-word;
+  animation: journalPop 0.25s ease-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-
-
-/* Journal puffs moods */
-
-
-.journal-puff {
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  margin-bottom: 0.8rem;
-  backdrop-filter: blur(2px);
+.journal-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
 }
 
-/* DAY */
-.journal-puff.day {
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--day-color-rgb), 0.22),
-    rgba(var(--day-color-rgb), 0.14)
-  );
-  border-left: 4px solid var(--day-color);
-  box-shadow: inset 0 0 8px rgba(var(--day-color-rgb), 0.25);
+@keyframes journalPop {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-/* EVENING */
-.journal-puff.evening {
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--evening-color-rgb), 0.22),
-    rgba(var(--evening-color-rgb), 0.14)
-  );
-  border-left: 4px solid var(--evening-color);
-  box-shadow: inset 0 0 8px rgba(var(--evening-color-rgb), 0.25);
-}
-
-/* NIGHT */
-.journal-puff.night {
-  background: linear-gradient(
-    to bottom,
-    rgba(var(--night-color-rgb), 0.22),
-    rgba(var(--night-color-rgb), 0.14)
-  );
-  border-left: 4px solid var(--night-color);
-  box-shadow: inset 0 0 8px rgba(var(--night-color-rgb), 0.25);
-}
+.journal-entry.sunrise { background: rgba(255, 179, 107, 0.18); }
+.journal-entry.day { background: rgba(255, 255, 255, 0.15); }
+.journal-entry.sunset { background: rgba(255, 122, 122, 0.18); }
+.journal-entry.night { background: rgba(106, 124, 255, 0.15); }
+.journal-entry.lateNight { background: rgba(194, 124, 255, 0.18); }
+.journal-entry.earlyMorning { background: rgba(168, 216, 255, 0.18); }
 
 
-.journal-puff.day-sunrise {
-  box-shadow: 0 0 12px rgba(255, 180, 80, 0.4);
-}
-
-.journal-puff.day {
-  box-shadow: 0 0 12px rgba(255, 255, 120, 0.4);
-}
-
-.journal-puff.evening-sunset {
-  box-shadow: 0 0 12px rgba(255, 120, 120, 0.4);
-}
-
-.journal-puff.night {
-  box-shadow: 0 0 12px rgba(120, 160, 255, 0.4);
-}
-
-.journal-puff.lateNight {
-  box-shadow: 0 0 12px rgba(200, 120, 255, 0.4);
-}
-
-.journal-puff.earlyMorning {
-  box-shadow: 0 0 12px rgba(180, 220, 255, 0.4);
-}
-
-@keyframes bubbleIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.95);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-2px) scale(1.02);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.journal-text {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+  white-space: pre-wrap;
 }
 
 .journal-input {
@@ -1305,6 +1240,7 @@ transition: background 2s ease, backdrop-filter 2s ease;
   transform: scale(1.05);
 }
 
+/*Clear Journal */
 .clear-journal {
   padding: 8px 16px;
   border-radius: 12px;
@@ -1316,83 +1252,64 @@ transition: background 2s ease, backdrop-filter 2s ease;
   backdrop-filter: blur(6px);
   background: rgba(255, 255, 255, 0.15);
   color: white;
-  opacity: 0.9;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-/* Hover: soft lift */
 .clear-journal:hover {
   opacity: 1;
   transform: translateY(-2px);
 }
 
-/* Mood‑coloured glow */
-.clear-journal.sunrise {
-  box-shadow: 0 0 10px rgba(255, 150, 80, 0.35);
-}
-
-.clear-journal.day {
-  box-shadow: 0 0 10px rgba(255, 230, 120, 0.35);
-}
-
-.clear-journal.sunset {
-  box-shadow: 0 0 10px rgba(255, 120, 120, 0.35);
-}
-
-.clear-journal.night {
-  box-shadow: 0 0 10px rgba(120, 150, 255, 0.35);
-}
-
-.clear-journal.lateNight {
-  box-shadow: 0 0 10px rgba(200, 120, 255, 0.35);
-}
-
-.clear-journal.earlyMorning {
-  box-shadow: 0 0 10px rgba(180, 220, 255, 0.35);
-}
+.clear-journal.sunrise { box-shadow: 0 0 10px rgba(255, 150, 80, 0.35); }
+.clear-journal.day { box-shadow: 0 0 10px rgba(255, 230, 120, 0.35); }
+.clear-journal.sunset { box-shadow: 0 0 10px rgba(255, 120, 120, 0.35); }
+.clear-journal.night { box-shadow: 0 0 10px rgba(120, 150, 255, 0.35); }
+.clear-journal.lateNight { box-shadow: 0 0 10px rgba(200, 120, 255, 0.35); }
+.clear-journal.earlyMorning { box-shadow: 0 0 10px rgba(180, 220, 255, 0.35); }
 
 
-.clear-journal {
-  animation: fadeIn 0.4s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-
+/* Journal-Empty */
 .journal-empty {
-  opacity: 0.7;
-  font-style: italic;
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: 0.95rem;
   text-align: center;
-  padding: 1rem 0;
+  margin-bottom: 14px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+  backdrop-filter: blur(6px);
+  color: white;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Mood glow */
-.journal-empty.sunrise {
-  color: #ffb36b;
+.journal-empty::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.6;
+  animation: shimmer 4s ease-in-out infinite;
 }
 
-.journal-empty.day {
-  color: #ffd84d;
+@keyframes shimmer {
+  0% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
+  100% { opacity: 0.4; transform: scale(1); }
 }
 
-.journal-empty.sunset {
-  color: #ff7a7a;
-}
+.journal-empty.sunrise::before { background: linear-gradient(135deg, rgba(255,179,107,0.25), rgba(255,142,83,0.25)); }
+.journal-empty.day::before { background: linear-gradient(135deg, rgba(255,233,122,0.25), rgba(255,216,77,0.25)); }
+.journal-empty.sunset::before { background: linear-gradient(135deg, rgba(255,122,122,0.25), rgba(255,82,82,0.25)); }
+.journal-empty.night::before { background: linear-gradient(135deg, rgba(106,124,255,0.25), rgba(74,91,212,0.25)); }
+.journal-empty.lateNight::before { background: linear-gradient(135deg, rgba(194,124,255,0.25), rgba(158,82,255,0.25)); }
+.journal-empty.earlyMorning::before { background: linear-gradient(135deg, rgba(168,216,255,0.25), rgba(123,188,255,0.25)); }
 
-.journal-empty.night {
-  color: #6a7cff;
-}
 
-.journal-empty.lateNight {
-  color: #c27cff;
-}
-
-.journal-empty.earlyMorning {
-  color: #7bbcff;
-}
+/* Delete Entry */
 
 .delete-entry {
   border: none;
@@ -1410,30 +1327,13 @@ transition: background 2s ease, backdrop-filter 2s ease;
   opacity: 1;
 }
 
+.delete-entry.sunrise { box-shadow: 0 0 8px rgba(255, 150, 80, 0.4); }
+.delete-entry.day { box-shadow: 0 0 8px rgba(255, 230, 120, 0.4); }
+.delete-entry.sunset { box-shadow: 0 0 8px rgba(255, 120, 120, 0.4); }
+.delete-entry.night { box-shadow: 0 0 8px rgba(120, 150, 255, 0.4); }
+.delete-entry.lateNight { box-shadow: 0 0 8px rgba(200, 120, 255, 0.4); }
+.delete-entry.earlyMorning { box-shadow: 0 0 8px rgba(180, 220, 255, 0.4); }
 /* Mood glow */
-.delete-entry.sunrise {
-  box-shadow: 0 0 8px rgba(255, 150, 80, 0.4);
-}
-
-.delete-entry.day {
-  box-shadow: 0 0 8px rgba(255, 230, 120, 0.4);
-}
-
-.delete-entry.sunset {
-  box-shadow: 0 0 8px rgba(255, 120, 120, 0.4);
-}
-
-.delete-entry.night {
-  box-shadow: 0 0 8px rgba(120, 150, 255, 0.4);
-}
-
-.delete-entry.lateNight {
-  box-shadow: 0 0 8px rgba(200, 120, 255, 0.4);
-}
-
-.delete-entry.earlyMorning {
-  box-shadow: 0 0 8px rgba(180, 220, 255, 0.4);
-}
 
 
 /* Base empty state */
@@ -1452,15 +1352,29 @@ transition: background 2s ease, backdrop-filter 2s ease;
   overflow: hidden;
 }
 
-/* Soft shimmer overlay */
-.journal-empty::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0.6;
-  animation: shimmer 4s ease-in-out infinite;
+
+/* Mood glow */
+.journal-empty.sunrise {
+  color: #ffb36b;
+}
+
+.journal-empty.day {
+  color: #ffd84d;
+}
+
+.journal-empty.sunset {
+  color: #ff7a7a;
+}
+.journal-empty.night {
+  color: #6a7cff;
+}
+
+.journal-empty.lateNight {
+  color: #c27cff;
+}
+
+.journal-empty.earlyMorning {
+  color: #7bbcff;
 }
 
 /* Mood colours for the shimmer */
@@ -1468,41 +1382,6 @@ transition: background 2s ease, backdrop-filter 2s ease;
   background: linear-gradient(135deg,
     rgba(255, 179, 107, 0.25),
     rgba(255, 142, 83, 0.25)
-  );
-}
-
-.journal-empty.day::before {
-  background: linear-gradient(135deg,
-    rgba(255, 233, 122, 0.25),
-    rgba(255, 216, 77, 0.25)
-  );
-}
-
-.journal-empty.sunset::before {
-  background: linear-gradient(135deg,
-    rgba(255, 122, 122, 0.25),
-    rgba(255, 82, 82, 0.25)
-  );
-}
-
-.journal-empty.night::before {
-  background: linear-gradient(135deg,
-    rgba(106, 124, 255, 0.25),
-    rgba(74, 91, 212, 0.25)
-  );
-}
-
-.journal-empty.lateNight::before {
-  background: linear-gradient(135deg,
-    rgba(194, 124, 255, 0.25),
-    rgba(158, 82, 255, 0.25)
-  );
-}
-
-.journal-empty.earlyMorning::before {
-  background: linear-gradient(135deg,
-    rgba(168, 216, 255, 0.25),
-    rgba(123, 188, 255, 0.25)
   );
 }
 
