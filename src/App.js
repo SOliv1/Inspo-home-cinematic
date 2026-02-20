@@ -47,10 +47,10 @@ function App() {
       localStorage.setItem("journalEntries", JSON.stringify(entries));
     }, [entries]);
 
-   /* const handleDelete = (i) => {
+    /*const handleDelete = (i) => {
       const updated = entries.filter((_, idx) => idx !== i);
         setEntries(updated);
-    };*/
+    }; */
 
 
 
@@ -419,7 +419,7 @@ function App() {
               <section className="journal-entries">
                 {entries.length === 0 && ( <div className={`journal-empty ${moodKey}`}> Nothing here yet… Write a little thought above. </div> )}
                 {entries.map((entry, index) => (
-                  <div key={index} className={`journal-puff ${moodKey}`}>
+                  <div key={index} className={`journal-entry ${moodKey}`}>
                     <span className="journal-text">{entry}</span>
 
                     <button

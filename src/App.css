@@ -1151,13 +1151,20 @@ transition: background 2s ease, backdrop-filter 2s ease;
   overflow-y: auto;
 } */
 
-
 .journal-entries {
-  min-height: 20px; /* keeps the space stable */
-  transition: all 0.35s ease;
-  overflow: hidden;
+  width: 100%;
+  max-width: 500px; /* or whatever your design uses */
+  min-height: 180px;
+  max-height: 220px;
+  padding: 1rem;
+  border: 2px solid var(--mood-color);
+  border-radius: 12px;
+  background: var(--mood-bg);
+  box-shadow: 0 0 12px var(--mood-glow);
+  overflow-y: auto; /* keeps text inside */
+  word-wrap: break-word;
+  box-sizing: border-box;
 }
-
 
 .journal-input-wrapper {
   display: flex;
@@ -1165,6 +1172,16 @@ transition: background 2s ease, backdrop-filter 2s ease;
   align-items: center;
   margin-top: 1rem;
 }
+
+.journal-entry {
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 
 
 /* Journal puffs moods */
@@ -1344,13 +1361,6 @@ transition: background 2s ease, backdrop-filter 2s ease;
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.journal-entries {
-  border: 2px solid var(--mood-color);
-  padding: 1rem;
-  border-radius: 12px;
-  background: var(--mood-bg);
-  box-shadow: 0 0 12px var(--mood-glow);
-}
 
 .journal-empty {
   opacity: 0.7;
