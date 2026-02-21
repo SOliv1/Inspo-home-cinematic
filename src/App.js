@@ -105,6 +105,15 @@ function App() {
   const greetingClass = mood.class;
   const greetingIcon = mood.icon(hour);
 
+
+  // Seasonal quotes
+  const seasonalQuotes = {
+    winter: "Even the quiet season has its glow.",
+    spring: "New beginnings bloom softly.",
+    summer: "Warmth finds its way into everything.",
+    autumn: "Let go gently, and let beauty remain."
+  };
+
   // --- SEASON LOGIC ---
   function getSeasonFromMonth() {
     const month = new Date().getMonth();
@@ -114,10 +123,9 @@ function App() {
     return "autumn";
   }
 
- const [seasonKey, setSeasonKey] = useState(getSeasonFromMonth());
-const [manualSeason, setManualSeason] = useState(false);
-
-const quote = seasonalQuotes[seasonKey];
+  const [seasonKey, setSeasonKey] = useState(getSeasonFromMonth());
+  const [manualSeason, setManualSeason] = useState(false);
+  const quote = seasonalQuotes[seasonKey]
 
 
   useEffect(() => {
@@ -136,13 +144,6 @@ const quote = seasonalQuotes[seasonKey];
     return () => clearTimeout(timeout);
   }, [seasonKey]);
 
-  // Seasonal quotes
-  const seasonalQuotes = {
-    winter: "Even the quiet season has its glow.",
-    spring: "New beginnings bloom softly.",
-    summer: "Warmth finds its way into everything.",
-    autumn: "Let go gently, and let beauty remain."
-  };
 
 
 
@@ -269,7 +270,12 @@ const quote = seasonalQuotes[seasonKey];
                     <span className="greeting-icon">{greetingIcon}</span>
                     {greeting}
                   </p>
-                  <p className="evergreen-quote">{evergreenQuote}</p>
+                  <p key={seasonKey} className={`seasonal-whisper ${seasonKey}`}>
+                      {quote}
+                  </p>
+
+                  <p className={`seasonal-whisper ${seasonKey}`}>{quote}</p>
+
 
                   <div
                     className="greeting-mode-toggle"
@@ -516,10 +522,6 @@ const quote = seasonalQuotes[seasonKey];
                   >
                     Facebook
                   </a>
-                </div>
-
-                <div>
-                  <p>{quote}</p>
                 </div>
               </div>
             </footer>

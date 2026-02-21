@@ -888,6 +888,80 @@ background-position: top center;
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* SEASONAL WHISPER */
+
+.seasonal-whisper {
+  font-size: 0.9rem;
+  opacity: 0;
+  margin-top: 0.4rem;
+  font-style: italic;
+  animation:
+    whisperFade 1.8s ease forwards,
+    whisperFloat 7s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.25));
+}
+
+/* Fade in like breath */
+@keyframes whisperFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+    letter-spacing: 0.5px;
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+    letter-spacing: 0;
+  }
+}
+
+/* Airy drift */
+@keyframes whisperFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* Optional seasonal tints */
+.seasonal-whisper.winter { color: var(--winter-accent, #bcd7ff); }
+.seasonal-whisper.spring { color: var(--spring-accent, #c8e6c9); }
+.seasonal-whisper.summer { color: var(--summer-accent, #ffe082); }
+.seasonal-whisper.autumn { color: var(--autumn-accent, #ffcc80); }
+
+
+.seasonal-whisper.winter {
+  color: #d8eaff;
+  text-shadow: 0 0 6px rgba(200, 220, 255, 0.45);
+  animation:
+    whisperFade 1.8s ease forwards,
+    whisperFloat 7s ease-in-out infinite,
+    winterShimmer 5s ease-in-out infinite;
+}
+
+.seasonal-whisper.summer {
+  color: #ffe9a8;
+  text-shadow: 0 0 6px rgba(255,230,150,0.4);
+  animation:
+    whisperFade 1.8s ease forwards,
+    whisperFloat 7s ease-in-out infinite,
+    summerGlow 4.5s ease-in-out infinite;
+}
+
+@keyframes summerGlow {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.08); }
+  100% { filter: brightness(1); } 
+}
+
+
+@keyframes winterShimmer {
+  0%   { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
+  50%  { filter: drop-shadow(0 0 7px rgba(200,220,255,0.45)); }
+  100% { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
+}
+
+
 /* === WEATHER PANEL STYLES ===================================== */
 
 
@@ -907,8 +981,6 @@ background-position: top center;
     transform: translateY(0px)
   }
 }
-
-
 
 /* Header layout */
 .app-header {
@@ -997,11 +1069,6 @@ background-position: top center;
     transparent
   );
   opacity: 0.7;
-}
-
-
-.app-kicker {
-  color: #9ca3af;
 }
 
 .app-subtitle {
