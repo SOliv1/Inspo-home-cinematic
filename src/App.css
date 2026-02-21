@@ -939,6 +939,28 @@ background-position: top center;
     winterShimmer 5s ease-in-out infinite;
 }
 
+
+@keyframes winterShimmer {
+  0%   { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
+  50%  { filter: drop-shadow(0 0 7px rgba(200,220,255,0.45)); }
+  100% { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
+}
+
+.seasonal-whisper.spring {
+  color: #dfffe0;
+  text-shadow: 0 0 6px rgba(200,255,210,0.35);
+  animation:
+    whisperFade 1.8s ease forwards,
+    whisperFloat 7s ease-in-out infinite,
+    springBloom 6s ease-in-out infinite;
+}
+
+@keyframes springBloom {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.015); }
+  100% { transform: scale(1); }
+}
+
 .seasonal-whisper.summer {
   color: #ffe9a8;
   text-shadow: 0 0 6px rgba(255,230,150,0.4);
@@ -951,14 +973,22 @@ background-position: top center;
 @keyframes summerGlow {
   0%   { filter: brightness(1); }
   50%  { filter: brightness(1.08); }
-  100% { filter: brightness(1); } 
+  100% { filter: brightness(1); }
 }
 
+.seasonal-whisper.autumn {
+  color: #ffd7b0;
+  text-shadow: 0 0 6px rgba(255,190,140,0.4);
+  animation:
+    whisperFade 1.8s ease forwards,
+    whisperFloat 7s ease-in-out infinite,
+    autumnSway 8s ease-in-out infinite;
+}
 
-@keyframes winterShimmer {
-  0%   { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
-  50%  { filter: drop-shadow(0 0 7px rgba(200,220,255,0.45)); }
-  100% { filter: drop-shadow(0 0 3px rgba(200,220,255,0.2)); }
+@keyframes autumnSway {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(3px); }
+  100% { transform: translateX(0); }
 }
 
 
