@@ -377,47 +377,33 @@ html {
   margin-bottom: 20px;
 }
 
-/* Button row */
-.season-buttons {
-  display: flex;
-  gap: 10px;
+/* ===========================
+   SEASON BUTTON ACCENTS
+   =========================== */
+
+.season-buttons button.winter {
+  border-left: 4px solid #8ecaff;
 }
 
-/* Base button style */
-.season-buttons button {
-  padding: 6px 16px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px) saturate(160%);
-  color: #fffaf3;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+.season-buttons button.spring {
+  border-left: 4px solid #a8e6a3;
 }
 
-/* Hover */
-.season-buttons button:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+.season-buttons button.summer {
+  border-left: 4px solid #ffd27f;
 }
 
-/* Active */
-.season-buttons button.active {
-  background: rgba(255, 255, 255, 0.35);
+.season-buttons button.autumn {
+  border-left: 4px solid #ffb07c;
 }
 
-/* Seasonal accent borders */
-.season-buttons button.winter { border-left: 4px solid #8ecaff; }
-.season-buttons button.spring { border-left: 4px solid #a8e6a3; }
-.season-buttons button.summer { border-left: 4px solid #ffd27f; }
-.season-buttons button.autumn { border-left: 4px solid #ffb07c; }
+/* ===========================
+   MOOD‑RESPONSIVE GLOW
+   =========================== */
 
-/* Mood‑responsive glow */
 .app-shell.earlyMorning .season-buttons button.active {
-  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6);
+  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6)
 }
-
 .app-shell.sunrise .season-buttons button.active {
   box-shadow: 0 0 10px rgba(255, 180, 120, 0.6);
 }
@@ -481,6 +467,8 @@ html {
 .app-shell.fade-transition::before {
   opacity: 1;
 }
+
+
 /* ===========================
    WINTER
    =========================== */
@@ -1125,6 +1113,47 @@ background-position: top center;
   transform: none;
 }
 
+/* ===========================
+   GEM INTERNAL LAYOUT
+   =========================== */
+
+.task-gem {
+  gap: 0.6rem; /* gentle breathing room */
+}
+
+.task-text {
+  flex: 1; /* lets the text expand naturally */
+  padding-right: 0.4rem; /* prevents crowding near delete button */
+}
+
+/* ===========================
+   COMPLETED TASKS (archival)
+   =========================== */
+
+.completed-list {
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  opacity: 0.85;
+}
+
+.completed-item {
+  padding: 0.45rem 0.75rem;
+  margin-bottom: 0.4rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  backdrop-filter: blur(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.completed-item:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
 
 
 /* ===========================
@@ -1155,6 +1184,19 @@ background-position: top center;
   align-items: flex-start;
   gap: 1.8rem;
   padding: 0.5rem 0 2rem;
+
+  background: radial-gradient(
+      circle at top left,
+      rgba(255, 190, 150, 0.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(120, 160, 255, 0.16),
+      transparent 55%
+    );
+  border-radius: 18px;
+  padding: 1.1rem 1.3rem 1.4rem;
 }
 
 /* Left column spacing */
@@ -1186,24 +1228,57 @@ background-position: top center;
   }
 }
 
-
-.app-subtitle {
-  font-size: 1rem;                 /* keep your size */
-  margin: 0;                       /* keep your spacing */
-
-  color: rgba(255, 240, 230, 0.98); /* warm, readable */
-  font-weight: 500;                 /* gentle presence */
-  letter-spacing: 0.3px;            /* subtle lift */
+.app-title {
+  font-size: 2.1rem;
+  margin: 0;
+  letter-spacing: 0.03em;
+  font-weight: 650;
+  color: #fdf7f2;
 
   text-shadow:
-    0 0 8px rgba(255, 170, 130, 0.55),   /* warm dusk glow */
-    0 0 14px rgba(255, 150, 110, 0.35),  /* soft halo */
-    0 2px 6px rgba(0, 0, 0, 0.35);       /* grounding */
+    0 0 14px rgba(255, 190, 150, 0.55),
+    0 0 26px rgba(255, 160, 120, 0.35),
+    0 3px 10px rgba(0, 0, 0, 0.45);
 
-  backdrop-filter: blur(3px);           /* clarity pocket */
+  transition: transform 0.35s ease, text-shadow 0.4s ease, opacity 0.3s ease;
+}
+
+.app-title:hover {
+  transform: translateY(-1px);
+  text-shadow:
+    0 0 18px rgba(255, 200, 160, 0.7),
+    0 0 30px rgba(255, 170, 130, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.55);
+}
+
+
+.app-subtitle {
+  font-size: 1rem;
+  margin: 0;
+
+  color: rgba(255, 240, 230, 0.98);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  text-shadow:
+    0 0 8px rgba(255, 170, 130, 0.45),
+    0 0 14px rgba(255, 150, 110, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
-  padding: 0.25rem 0.6rem;              /* subtle cushion */
-  border-radius: 6px;                   /* soft shape */
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+
+  transition: text-shadow 0.4s ease, opacity 0.3s ease;
+}
+
+/* subtle seasonal shimmer on hover */
+.header-left:hover .app-subtitle {
+  text-shadow:
+    0 0 10px var(--season-accent),
+    0 0 18px rgba(255, 190, 150, 0.6),
+    0 3px 8px rgba(0, 0, 0, 0.45);
 }
 
 /* Divider */
@@ -1219,10 +1294,6 @@ background-position: top center;
     transparent
   );
   opacity: 0.7;
-}
-
-.app-subtitle {
-  color: #d1d5db;
 }
 
 .header-divider {
