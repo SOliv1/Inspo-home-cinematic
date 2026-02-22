@@ -99,80 +99,8 @@ html {
   --parallax-speed: 40s;
   --overlay-drift: 18s;
   --shimmer-strength: 0.35;
-
-  --chip-earlyMorning: linear-gradient(135deg, rgba(180, 210, 255, 0.45), rgba(150, 180, 255, 0.35));
-  --chip-sunrise: linear-gradient(135deg, rgba(255, 200, 150, 0.45), rgba(255, 160, 120, 0.35));
-  --chip-day: linear-gradient(135deg, rgba(255, 255, 200, 0.45), rgba(255, 245, 180, 0.35));
-  --chip-sunset: linear-gradient(135deg, rgba(255, 170, 150, 0.45), rgba(255, 120, 120, 0.35));
-  --chip-night: linear-gradient(135deg, rgba(180, 160, 255, 0.45), rgba(140, 120, 220, 0.35));
-  --chip-lateNight: linear-gradient(135deg, rgba(120, 100, 180, 0.45), rgba(90, 70, 150, 0.35));
 }
 
-:root {
---puff-earlyMorning: #8AB6FF;
---puff-sunrise: #FFB37A;
---puff-day: #FFE97A;
---puff-sunset: #FF8A7A;
---puff-night: #B39AFF;
---puff-lateNight: #7A5FCF;
-}
-
-.puff-colourful {
-  position: fixed;
-  width: 60px;
-  height: 60px;
-
-  background: var(--puff-color);
-  opacity: 1;
-  filter: blur(3px) brightness(1.2);
-  animation: puffFloat 1.4s ease-out forwards;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-.puff-transitional {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
-  animation: puffFade 1.6s ease-out forwards;
-  pointer-events: none;
-}
-
-
-@keyframes puffIn {
-  0% {
-    opacity: 0;
-    transform: translateY(6px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes chipPoof {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-    filter: blur(0px);
-  }
-  40% {
-    transform: scale(1.1);
-    opacity: 0.8;
-    filter: blur(2px);
-  }
-  100% {
-    transform: scale(0.8);
-    opacity: 0;
-    filter: blur(6px);
-  }
-}
-
-.todo-chip.completed {
-  animation: chipPoof 0.5s ease forwards;
-}
 
 .delete-entry,
 .delete-task {
@@ -192,7 +120,6 @@ html {
   background: rgba(255, 255, 255, 0.25);
   transform: scale(1.08);
 }
-
 
 .task-list {
   display: flex;
@@ -216,8 +143,6 @@ html {
   padding: 0.6rem 0.8rem;
   border-radius: 1.4rem;
   backdrop-filter: blur(8px);
- /*background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);*/
   transition: all 0.3s ease;
 }
 
@@ -245,46 +170,10 @@ html {
   background: rgba(255, 255, 255, 0.25);
 }
 
-.new-task-bar.earlyMorning {
-  background: var(--chip-earlyMorning);
-  box-shadow: 0 0 10px rgba(150, 180, 255, 0.35);
-}
 
-.new-task-bar.sunrise {
-  background: var(--chip-sunrise);
-  box-shadow: 0 0 10px rgba(255, 180, 130, 0.35);
-}
-
-.new-task-bar.day {
-  background: var(--chip-day);
-  box-shadow: 0 0 10px rgba(255, 245, 180, 0.35);
-}
-
-.new-task-bar.sunset {
-  background: var(--chip-sunset);
-  box-shadow: 0 0 10px rgba(255, 140, 120, 0.35);
-}
-
-.new-task-bar.night {
-  background: var(--chip-night);
-  box-shadow: 0 0 10px rgba(160, 140, 220, 0.35);
-}
-
-.new-task-bar.lateNight {
-  background: var(--chip-lateNight);
-  box-shadow: 0 0 10px rgba(90, 70, 150, 0.35);
-}
-
-.todo-chip.earlyMorning {
-  background: var(--chip-earlyMorning);
-  box-shadow: 0 0 10px rgba(150, 180, 255, 0.35);
-}
-
-.todo-chip.lateNight {
-  background: var(--chip-lateNight);
-  box-shadow: 0 0 10px rgba(90, 70, 150, 0.35);
-}
-
+/* ===========================
+   GREETING SYSTEM
+   =========================== */
 
 .greeting-mode-toggle {
   display: flex;
@@ -352,49 +241,6 @@ html {
     0 0 8px rgba(210, 170, 255, 0.45),
     0 0 14px rgba(255, 180, 220, 0.35);
 }
-
-/* CASUAL — cool blue */
-
-.todo-chip {
-  padding: 0.45rem 0.9rem;
-  border-radius: 1.4rem;
-  font-size: 0.85rem;
-  color: rgba(255, 245, 230, 0.95);
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.todo-chip:hover {
-  background: rgba(255, 255, 255, 0.18);
-  transform: translateY(-1px);
-}
-
-.todo-chip.sunrise {
-  background: var(--chip-sunrise);
-  box-shadow: 0 0 10px rgba(255, 180, 130, 0.35);
-}
-
-.todo-chip.day {
-  background: var(--chip-day);
-  box-shadow: 0 0 10px rgba(255, 245, 180, 0.35);
-}
-
-.todo-chip.sunset {
-  background: var(--chip-sunset);
-  box-shadow: 0 0 10px rgba(255, 140, 120, 0.35);
-}
-
-.todo-chip.night {
-  background: var(--chip-night);
-  box-shadow: 0 0 10px rgba(160, 140, 220, 0.35);
-}
-
 
 /* Time-based background variants with subtle overlays for mood */
 .greeting-latenight::before {
@@ -470,7 +316,6 @@ html {
     transparent 100%
   );
 }
-
 
 
 /* Frosted glass overlay for better text contrast */
@@ -636,10 +481,11 @@ html {
 .app-shell.fade-transition::before {
   opacity: 1;
 }
-
+/* ===========================
+   WINTER
+   =========================== */
 
 /* Winter Day */
-
 .app-shell.winter.day,
 .app-shell.winter.sunrise,
 .app-shell.winter.earlyMorning {
@@ -668,7 +514,6 @@ background-position: top center;
   background-repeat: no-repeat;
 
 }
-
 
 /* SPRING — Bright Fresh (Night) */
 .app-shell.spring.sunset,
@@ -1181,9 +1026,110 @@ background-position: top center;
   100% { transform: translateX(0); }
 }
 
+/* ===========================
+   TASK GEMS SYSTEM
+   =========================== */
 
-/* === WEATHER PANEL STYLES ===================================== */
+/* 1. Base gem structure */
+.task-gem {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--day-accent);
+  transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
 
+/* 1b. Gem checkmark */
+.gem-check {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-right: 0.6rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.2s ease, opacity 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+.gem-check:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+.task-gem.completed .gem-check {
+  opacity: 0.5;
+  transform: scale(1);
+  cursor: default;
+}
+
+/* 2. Mood color variants */
+.gem-dawn  { background: var(--dawn-accent); }
+.gem-day   { background: var(--day-accent); }
+.gem-dusk  { background: var(--dusk-accent); }
+.gem-night { background: var(--night-accent); }
+.gem-moon  { background: var(--moon-accent); }
+
+/* 3. Interaction states */
+.task-gem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.task-gem:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 4. Completion state */
+.task-gem.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+  filter: brightness(0.85);
+}
+
+/* 5. Utility helpers */
+.gem-small { padding: 0.5rem 0.75rem; font-size: 0.9rem; }
+.gem-large { padding: 1rem 1.25rem; font-size: 1.1rem; }
+
+
+/* ===========================
+   GEM DELETE BUTTON
+   =========================== */
+
+.delete-task {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0.3rem;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.delete-task:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.task-gem.completed .delete-task {
+  opacity: 0.4;
+  cursor: default;
+  transform: none;
+}
+
+
+
+/* ===========================
+   WEATHER PANEL STYLES
+   =========================== */
 
 
 .App-link {
@@ -1228,22 +1174,6 @@ background-position: top center;
   color: #6b7280;
   margin: 0 0 4px;
 }
-/*.app-title {
-  font-size: 2rem;
-  margin: 0;
-
-  color: rgba(255, 240, 230, 0.98);
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  text-shadow:
-    0 0 10px rgba(255, 200, 150, 0.5),
-    0 0 20px rgba(255, 170, 120, 0.35);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  padding: 0.3rem 0.75rem;
-  border-radius: 8px;
-} */
-
 
 @keyframes titleFade {
   from {

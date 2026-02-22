@@ -130,7 +130,7 @@ function App() {
   const [manualSeason, setManualSeason] = useState(false);
   const quote = seasonalQuotes[seasonKey]
 
-  const moonPhase = Math.floor((new Date().getDate() % 29) / 7); 
+  const moonPhase = Math.floor((new Date().getDate() % 29) / 7);
 
 
 
@@ -181,23 +181,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // PUFF EFFECT
-  function createPuff(x, y, type = "puff-colourful", moodKey) {
-    const puff = document.createElement("div");
-    puff.classList.add(type);
 
-    const puffColor = getComputedStyle(document.documentElement)
-      .getPropertyValue(`--puff-${moodKey}`);
-
-    puff.style.setProperty("--puff-color", puffColor);
-    puff.style.position = "fixed";
-    puff.style.left = `${x}px`;
-    puff.style.top = `${y}px`;
-
-    document.body.appendChild(puff);
-
-    setTimeout(() => puff.remove(), 1200);
-  }
 
   // --- JSX ---
   return (
@@ -368,23 +352,16 @@ function App() {
                 {tasks.map((task, index) => (
                   <div
                     key={index}
-                    className={`todo-chip ${moodKey} ${
-                      task.completed ? "completed" : ""
-                    }`}
+                    className={`task-gem gem-${moodKey}${
+                      task.completed ?
+                        "completed" : ""
+                       }`}
                   >
-                    <span
-                      className="chip-check"
+                   <span className="gem-check">
                       onClick={e => {
                         const updated = [...tasks];
                         updated[index].completed = true;
                         setTasks(updated);
-
-                        createPuff(
-                          e.clientX,
-                          e.clientY,
-                          "puff-colourful",
-                          moodKey
-                        );
 
                         setTimeout(() => {
                           setCompletedTasks([
