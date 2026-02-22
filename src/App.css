@@ -857,6 +857,13 @@ background-position: top center;
   }
 }
 
+.seasonal-whisper {
+  animation:
+    whisperCrossfade 1.6s ease forwards 0.35s,
+    whisperFloat 7s ease-in-out infinite 0.35s;
+}
+
+
 /* Evergreen Quote */
 .evergreen-quote {
   margin-top: 0.5rem;
@@ -914,6 +921,18 @@ background-position: top center;
     letter-spacing: 0;
   }
 }
+
+@keyframes whisperCrossfade {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
 
 /* Airy drift */
 @keyframes whisperFloat {

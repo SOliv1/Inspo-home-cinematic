@@ -77,7 +77,10 @@ function App() {
 
   // EVERGREEN QUOTE
   const evergreenQuote =
-    "There's a quiet wisdom inside you. Listen, and follow where it leads.";
+  "There's a quiet wisdom inside you. Listen, and follow where it leads.";
+
+
+
 
   // 4. MOODS
   const moods = {
@@ -145,6 +148,18 @@ function App() {
   }, [seasonKey]);
 
 
+  useEffect(() => {
+  function handleScroll() {
+    const whisper = document.querySelector(".seasonal-whisper");
+    if (!whisper) return;
+
+    const offset = window.scrollY * 0.05; // gentle parallax
+    whisper.style.transform = `translateY(${offset}px)`;
+  }
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
 
   // SCROLL FADE EFFECT
@@ -270,12 +285,10 @@ function App() {
                     <span className="greeting-icon">{greetingIcon}</span>
                     {greeting}
                   </p>
+                  <p className="evergreen-quote">{evergreenQuote}</p>
                   <p key={seasonKey} className={`seasonal-whisper ${seasonKey}`}>
                       {quote}
                   </p>
-
-                  <p className={`seasonal-whisper ${seasonKey}`}>{quote}</p>
-
 
                   <div
                     className="greeting-mode-toggle"
