@@ -28,7 +28,7 @@ body {
 
 .shooting-star {
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: -10%;
   width: 2px;
   height: 2px;
@@ -423,7 +423,7 @@ html {
 .app-shell {
   position: relative;
   min-height: 100vh;
-  padding: 24px;
+  padding: 16px 24px 20px;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -1636,13 +1636,11 @@ transition: background 2s ease, backdrop-filter 2s ease;
 
 /* === JOURNAL ENTRIES STYLES ====================================== */
 
-
 .journal-input-wrapper {
-  display: flex;
-  gap: 0.6rem;
-  align-items: center;
-  margin-top: 1rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
 }
+
 
 .journal-entries {
   width: 100%;
