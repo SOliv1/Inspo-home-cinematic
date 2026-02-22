@@ -377,33 +377,49 @@ html {
   margin-bottom: 20px;
 }
 
+
+/* Season buttons base styling */
+.season-buttons button {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.season-buttons button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
 /* ===========================
    SEASON BUTTON ACCENTS
    =========================== */
 
-.season-buttons button.winter {
-  border-left: 4px solid #8ecaff;
-}
-
-.season-buttons button.spring {
-  border-left: 4px solid #a8e6a3;
-}
-
-.season-buttons button.summer {
-  border-left: 4px solid #ffd27f;
-}
-
-.season-buttons button.autumn {
-  border-left: 4px solid #ffb07c;
-}
+/* Seasonal accent borders */
+.season-buttons button.winter { border-left: 4px solid #8ecaff; }
+.season-buttons button.spring { border-left: 4px solid #a8e6a3; }
+.season-buttons button.summer { border-left: 4px solid #ffd27f; }
+.season-buttons button.autumn { border-left: 4px solid #ffb07c; }
 
 /* ===========================
    MOOD‑RESPONSIVE GLOW
    =========================== */
 
 .app-shell.earlyMorning .season-buttons button.active {
-  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6)
+  box-shadow: 0 0 10px rgba(255, 240, 200, 0.6);
 }
+
 .app-shell.sunrise .season-buttons button.active {
   box-shadow: 0 0 10px rgba(255, 180, 120, 0.6);
 }
@@ -411,6 +427,10 @@ html {
 .app-shell.day .season-buttons button.active {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
+
+.app-shell.dusk .season-buttons button.active {
+  box-shadow: 0 0 12px rgba(255, 180, 140, 0.65);
+ }
 
 .app-shell.sunset .season-buttons button.active {
   box-shadow: 0 0 10px rgba(255, 150, 80, 0.6);
@@ -420,8 +440,16 @@ html {
   box-shadow: 0 0 10px rgba(120, 160, 255, 0.6);
 }
 
+.app-shell.moon .season-buttons button.active {
+  box-shadow: 0 0 14px rgba(220, 220, 255, 0.7);
+}
+
 .app-shell.lateNight .season-buttons button.active {
   box-shadow: 0 0 10px rgba(180, 120, 255, 0.6);
+}
+
+.season-buttons button:hover {
+  box-shadow: 0 0 12px var(--season-accent);
 }
 
 /* Auto/Manual toggle */
