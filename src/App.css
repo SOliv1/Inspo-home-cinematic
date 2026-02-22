@@ -22,6 +22,69 @@ body {
 }
 
 
+/* ===========================
+   SHOOTING STAR
+   =========================== */
+
+.shooting-star {
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: shootingStar 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(45deg) scale(0.8);
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: translate(300px, 300px) rotate(45deg) scale(1);
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ===========================
+   TWINKLING STARS
+   =========================== */
+
+.twinkle-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: twinkle 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* ===========================
+   TWINKLING STARS
+   =========================== */
+
 /* Mini Menu */
 .mini-menu {
   position: fixed;
@@ -1457,19 +1520,50 @@ transition: background 2s ease, backdrop-filter 2s ease;
     0 0 10px rgba(120, 160, 255, 0.6),
     0 0 20px rgba(80, 120, 255, 0.4);
 }
+/* ========================MOOD BACKGROUND STYLES
+   =========================== */
 
-.mood-silhouette {
-  background: linear-gradient(
-    to bottom,
-    #e5e5e5 0%,
-    #c7c7c7 20%,
-    #5a5a5a 60%,
-    #2b2b2b 100%
-  );
-  background-attachment: fixed;
-  background-size: cover;
-  color: #f2f2f2;
+.mood-silhouette.earlyMorning {
+  background: linear-gradient(to bottom, #ffe7c8, #ffd4a3, #f9a87a, #d97b5f);
 }
+
+.mood-silhouette.day {
+  background: linear-gradient(to bottom, #e8f6ff, #cfe8ff, #a7d0ff);
+}
+
+.mood-silhouette.dusk {
+  background: linear-gradient(to bottom, #ffcfb3, #ff9e8a, #d86b7a);
+}
+
+.mood-silhouette.night {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
+}
+
+.mood-silhouette.moon {
+  background: linear-gradient(to bottom, #e8e8f0, #cfcfe0, #b5b5c8);
+}
+
+
+.mood-silhouette.earlyMorning {
+  background: linear-gradient(to bottom, #ffe7c8, #ffd4a3, #f9a87a, #d97b5f);
+}
+
+.mood-silhouette.day {
+  background: linear-gradient(to bottom, #e8f6ff, #cfe8ff, #a7d0ff);
+}
+
+.mood-silhouette.dusk {
+  background: linear-gradient(to bottom, #ffcfb3, #ff9e8a, #d86b7a);
+}
+
+.mood-silhouette.night {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
+}
+
+.mood-silhouette.moon {
+  background: linear-gradient(to bottom, #e8e8f0, #cfcfe0, #b5b5c8);
+}
+
 
 .greeting-sunrise .dynamic-greeting {
   text-shadow:
