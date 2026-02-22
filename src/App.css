@@ -402,6 +402,7 @@ html {
   transform: translateY(-2px);
 }
 
+
 /* ===========================
    SEASON BUTTON ACCENTS
    =========================== */
@@ -451,6 +452,20 @@ html {
 .season-buttons button:hover {
   box-shadow: 0 0 12px var(--season-accent);
 }
+
+.season-buttons button.active {
+  background: rgba(255, 255, 255, 0.18);
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+:root {
+  --winter-accent: #8ecaff;
+  --spring-accent: #a8e6a3;
+  --summer-accent: #ffd27f;
+  --autumn-accent: #ffb07c;
+}
+
 
 /* Auto/Manual toggle */
 .season-mode {
