@@ -421,6 +421,7 @@ html {
 
 /* BASE */
 .app-shell {
+  position: relative;
   min-height: 100vh;
   padding: 24px;
   background-size: cover;
@@ -924,10 +925,6 @@ background-position: top center;
 .moon-waning {
   background: var(--moon-waning);
 }
-
-/* Optional soft glow for full moon */
-.moon-full {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
 
 /* ------------------------------------------------------ */
 /*  MOON PHASE GRADIENTS — UNIVERSAL VARIABLES            */
