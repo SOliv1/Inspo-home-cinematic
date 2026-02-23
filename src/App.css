@@ -1117,6 +1117,45 @@ background-position: top center;
   100% { transform: translateX(0); }
 }
 
+
+/* ===========================
+   CINEMATIC GEM LAYERS
+   =========================== */
+
+.gem-core {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Soft glow behind the gem */
+.gem-glow {
+  position: absolute;
+  inset: -20%;
+  border-radius: inherit;
+  filter: blur(22px);
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Glossy surface layer */
+.gem-body {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.22),
+    rgba(255,255,255,0.05)
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
 /* ===========================
    TASK GEMS SYSTEM
    =========================== */
@@ -1131,7 +1170,7 @@ background-position: top center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--day-accent);
+/*background removed so mood classes can take over */
   transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
 }
@@ -1160,11 +1199,55 @@ background-position: top center;
 }
 
 /* 2. Mood color variants */
+/* === NEW MAPPINGS FOR YOUR POETIC MOODS === */
+
+/* earlyMorning → dawn */
+.gem-earlyMorning { background: var(--dawn-accent); }
+.gem-earlyMorning .gem-glow { background: var(--dawn-accent); }
+.gem-earlyMorning .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05));
+}
+
+/* sunrise → dawn */
+.gem-sunrise { background: var(--dawn-accent); }
+.gem-sunrise .gem-glow { background: var(--dawn-accent); }
+.gem-sunrise .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05));
+}
+
+/* sunset → dusk */
+.gem-sunset { background: var(--dusk-accent); }
+.gem-sunset .gem-glow { background: var(--dusk-accent); }
+.gem-sunset .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,180,255,0.05));
+}
+
 .gem-dawn  { background: var(--dawn-accent); }
 .gem-day   { background: var(--day-accent); }
 .gem-dusk  { background: var(--dusk-accent); }
 .gem-night { background: var(--night-accent); }
 .gem-moon  { background: var(--moon-accent); }
+.gem-lateNight { background: var(--lateNight-accent); }
+
+
+/* Mood glow colors */
+.gem-dawn  .gem-glow { background: var(--dawn-accent); }
+.gem-day   .gem-glow { background: var(--day-accent); }
+.gem-dusk  .gem-glow { background: var(--dusk-accent); }
+.gem-night .gem-glow { background: var(--night-accent); }
+.gem-moon  .gem-glow { background: var(--moon-accent); }
+.gem-lateNight .gem-glow { background: var(--lateNight-accent);opacity: 0.55;}
+
+
+/* Mood tint on the glossy body */
+.gem-dawn  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05)); }
+.gem-day   .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,200,0.05)); }
+.gem-dusk  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,180,255,0.05)); }
+.gem-night .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(180,200,255,0.05)); }
+.gem-moon  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(200,200,255,0.05)); }
+.gem-lateNight .gem-body { background: linear-gradient( 145deg, rgba(255,255,255,0.25), rgba(180,190,255,0.05) ); }
+.gem-lateNight .gem-body { background: linear-gradient( 145deg,  rgba(255,255,255,0.25),   rgba(180,190,255,0.05)  ); }
+
 
 /* 3. Interaction states */
 .task-gem:hover {

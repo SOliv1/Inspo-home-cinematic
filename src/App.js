@@ -94,12 +94,15 @@ function App() {
 
   // 5. MOOD LOGIC
   let moodKey;
-  if (hour >= 2 && hour < 5) moodKey = "earlyMorning";
-  else if (hour >= 5 && hour < 12) moodKey = "sunrise";
+  if (hour >= 2 && hour < 5) moodKey = "dawn";
+  else if (hour >= 5 && hour < 12) moodKey = "dawn";
   else if (hour >= 12 && hour < 17) moodKey = "day";
-  else if (hour >= 17 && hour < 22) moodKey = "sunset";
+  else if (hour >= 17 && hour < 22) moodKey = "dusk";
   else if (hour >= 22 && hour < 23) moodKey = "night";
   else moodKey = "lateNight";
+
+
+  console.log("moodKey:", moodKey);
 
   const mood = moods[moodKey];
 
@@ -315,7 +318,6 @@ function App() {
                     <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
                     {/*<div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>*/}
                     <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div>
-
                   </div>
                 </div>
 
@@ -336,7 +338,6 @@ function App() {
 
               {/* NEW TASK BAR */}
               <div id="todos"></div>
-
               <div className={`new-task-bar ${moodKey}`}>
                 <input
                   type="text"
@@ -365,47 +366,45 @@ function App() {
                 {tasks.map((task, index) => (
                   <div
                     key={index}
-                    className={`task-gem gem-${moodKey}${
-                      task.completed ?
-                        "completed" : ""
-                       }`}
+                    className={`task-gem gem-${moodKey}
+                      ${task.completed ?
+                       " completed" : ""}`
+                      }
                   >
-                   <span className="gem-check">
-                      onClick={e => {
-                        const updated = [...tasks];
-                        updated[index].completed = true;
-                        setTasks(updated);
+                      <div className="gem-core">
+                        <div className="gem-glow"></div>
+                        <div className="gem-body"></div>
+                      </div>
+                      <span
+                        className="gem-check"
+                        onClick={e => {
+                          const updated = [...tasks];
+                          updated[index].completed = true;
+                          setTasks(updated);
 
-                        setTimeout(() => {
-                          setCompletedTasks([
-                            ...completedTasks,
-                            task.text
-                          ]);
+                          setTimeout(() => {
+                            setCompletedTasks([...completedTasks, task.text]);
+                            setTasks(tasks.filter((_, i) => i !== index));
+                          }, 500);
+                        }}
+                      >
+                        ✓
+                      </span>
+
+                      <span className="task-text">{task.text}</span>
+                      <butto
+                        className="delete-task"
+                        onClick={() => {
                           setTasks(
                             tasks.filter((_, i) => i !== index)
                           );
-                        }, 500);
-                      }}
-
-                      ✓
-                    </span>
-
-                    <span className="task-text">{task.text}</span>
-
-                    <button
-                      className="delete-task"
-                      onClick={() => {
-                        setTasks(
-                          tasks.filter((_, i) => i !== index)
-                        );
-                      }}
-                    >
-                      ✕
-                    </button>
+                        }}
+                      >
+                        ✕
+                      </butto>
                   </div>
                 ))}
               </div>
-
               {/* COMPLETED TASKS */}
               <div className="completed-list">
                 {completedTasks.map((task, index) => (
@@ -414,8 +413,7 @@ function App() {
                   </div>
                 ))}
               </div>
-
-              <div className="section-divider"></div>
+              {/*<div className="section-divider"></div>*/}
 
               {/* JOURNAL INPUT */}
               <div id="thoughts"></div>
