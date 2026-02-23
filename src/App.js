@@ -319,13 +319,13 @@ function App() {
                   </div>
                 </div>
 
-                <div className={`app-shell ${moodKey}`}>
+                {/*div className={`app-shell ${moodKey}`}>
                   <div className="shooting-star"></div>
                   <div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>
                   <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
                   <div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>
                   <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div>
-                </div>
+                </div>*/}
 
 
                 <h1 className="app-title">Daily Checklist</h1>
@@ -429,10 +429,10 @@ function App() {
                   onChange={e => setJournalText(e.target.value)}
                 />
 
-                <div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>
+                {/*<div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>
                 <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
                 <div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>
-                <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div>
+                <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div> */}
 
 
                 <button
