@@ -101,10 +101,15 @@ function App() {
   else if (hour >= 22 && hour < 23) moodKey = "night";
   else moodKey = "lateNight";
 
-
-  console.log("moodKey:", moodKey);
-
   const mood = moods[moodKey];
+    if (!mood) {
+  console.warn("Invalid moodKey:", moodKey);
+  }
+
+  const safeMood = mood || { class: "", icon: () => null };
+
+
+
 
   // 6. GREETING MACHINE
   const greeting = greetingSets[greetingMode][moodKey];
@@ -188,49 +193,65 @@ function App() {
 
   // --- JSX ---
   return (
+    <div className={`app-container ${moodKey}`}>
+      {moodKey === "lateNight" && (
+      <div className="night-sky">
+        <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
+        <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
+        <div className="twinkle-star" style={{ top: "22%", left: "75%" }}></div>
+        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+        <div className="twinkle-star" style={{ top: "5%", left: "60%" }}></div>
+        <div className="twinkle-star" style={{ top: "25%", left: "10%" }}></div>
+        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+
+         {/* ⭐ Shooting star */}
+        <div className="shooting-star"></div>
+      </div>
+    )}
+
     <div className={`app-body ${greetingClass}`}>
       <main className={`app-shell ${seasonKey} ${moodKey}`}>
         <div className="season-controls">
           <div className="season-buttons">
-            <button
-              className={`winter ${seasonKey === "winter" ? "active" : ""}`}
-              onClick={() => {
-                setManualSeason(true);
-                setSeasonKey("winter");
-              }}
-            >
-              ❄️ Winter
-            </button>
+              <button
+                className={`winter ${seasonKey === "winter" ? "active" : ""}`}
+                onClick={() => {
+                  setManualSeason(true);
+                  setSeasonKey("winter");
+                }}
+              >
+                ❄️ Winter
+              </button>
 
-            <button
-              className={`spring ${seasonKey === "spring" ? "active" : ""}`}
-              onClick={() => {
-                setManualSeason(true);
-                setSeasonKey("spring");
-              }}
-            >
-              🌸 Spring
-            </button>
+              <button
+                className={`spring ${seasonKey === "spring" ? "active" : ""}`}
+                onClick={() => {
+                  setManualSeason(true);
+                  setSeasonKey("spring");
+                }}
+              >
+                🌸 Spring
+              </button>
 
-            <button
-              className={`summer ${seasonKey === "summer" ? "active" : ""}`}
-              onClick={() => {
-                setManualSeason(true);
-                setSeasonKey("summer");
-              }}
-            >
-              ☀️ Summer
-            </button>
+              <button
+                className={`summer ${seasonKey === "summer" ? "active" : ""}`}
+                onClick={() => {
+                  setManualSeason(true);
+                  setSeasonKey("summer");
+                }}
+              >
+                ☀️ Summer
+              </button>
 
-            <button
-              className={`autumn ${seasonKey === "autumn" ? "active" : ""}`}
-              onClick={() => {
-                setManualSeason(true);
-                setSeasonKey("autumn");
-              }}
-            >
-              🍁 Autumn
-            </button>
+              <button
+                className={`autumn ${seasonKey === "autumn" ? "active" : ""}`}
+                onClick={() => {
+                  setManualSeason(true);
+                  setSeasonKey("autumn");
+                }}
+              >
+                🍁 Autumn
+              </button>
           </div>
 
           <div className="season-mode">
@@ -260,6 +281,7 @@ function App() {
           <div className="main-grid">
             {/* LEFT COLUMN */}
             <div className="left-column">
+
               <header className="app-header">
                 <nav className="mini-menu">
                   <div id="top"></div>
@@ -312,23 +334,7 @@ function App() {
                       Poetic
                     </button>
                   </div>
-                  <div className={`app-shell ${moodKey}`}>
-                    <div className="shooting-star"></div>
-                   {/* <div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>*/}
-                    <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
-                    {/*<div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>*/}
-                    <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div>
-                  </div>
                 </div>
-
-                {/*div className={`app-shell ${moodKey}`}>
-                  <div className="shooting-star"></div>
-                  <div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>
-                  <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
-                  <div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>
-                  <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div>
-                </div>*/}
-
 
                 <h1 className="app-title">Daily Checklist</h1>
                 <p className="app-subtitle">
@@ -392,7 +398,7 @@ function App() {
                       </span>
 
                       <span className="task-text">{task.text}</span>
-                      <butto
+                      <button
                         className="delete-task"
                         onClick={() => {
                           setTasks(
@@ -401,7 +407,7 @@ function App() {
                         }}
                       >
                         ✕
-                      </butto>
+                      </button>
                   </div>
                 ))}
               </div>
@@ -413,7 +419,6 @@ function App() {
                   </div>
                 ))}
               </div>
-              {/*<div className="section-divider"></div>*/}
 
               {/* JOURNAL INPUT */}
               <div id="thoughts"></div>
@@ -426,12 +431,6 @@ function App() {
                   value={journalText}
                   onChange={e => setJournalText(e.target.value)}
                 />
-
-                {/*<div className="twinkle-star" style={{ top: "15%", left: "40%" }}></div>
-                <div className="twinkle-star" style={{ top: "28%", left: "65%" }}></div>
-                <div className="twinkle-star" style={{ top: "33%", left: "22%" }}></div>
-                <div className="twinkle-star" style={{ top: "12%", left: "78%" }}></div> */}
-
 
                 <button
                   className="add-button"
@@ -548,6 +547,7 @@ function App() {
         </div>
       </main>
     </div>
+  </div>
   );
 }
 

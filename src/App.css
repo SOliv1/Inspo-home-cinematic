@@ -2,64 +2,88 @@
 body {
   margin: 0;
   padding: 0;
+}
 
- }
     /* Add breathing room to the whole page */
 body {
-  padding-top: 0 20px;
-  padding-bottom: 0 120px;
+  padding-top: 0;
+  padding-bottom: 120px;
+  padding-left: 20px;
+  padding-right: 20px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-.app-header {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 16px 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+.app-container {
+  position: relative;
+  z-index: 2;
+}
+/* ===========================
+NIGHT SKY GALAXY CONTAINER SHOOTING STAR
+ & TWINKLING STARS
+   =========================== */
+
+
+.night-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;        /* ⭐ bring stars above the background */
+  overflow: visible;
 }
 
+.star-layer {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 70% 40%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.8px 1.8px at 40% 70%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.2px 1.2px at 80% 80%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.4px 1.4px at 55% 20%, rgba(255,255,255,0.7), transparent);
+  animation: twinkle 6s ease-in-out infinite alternate;
+  opacity: 0.7;
+}
 
-/* ===========================
-   SHOOTING STAR
-   =========================== */
+/* ==========================
+  SHOOTING STARS
+  =========================== */
 
 .shooting-star {
   position: absolute;
-  top: 10%;
-  left: -10%;
-  width: 2px;
+  top: 10%;          /* ⭐ start higher in the sky */
+  left: -15%;        /* ⭐ start further off-screen */
+  width: 140px;
   height: 2px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.8);
-  opacity: 0;
-  transform: rotate(45deg);
-  animation: shootingStar 6s ease-in-out infinite;
-  pointer-events: none;
+  background: linear-gradient(90deg, transparent, white);
+  opacity: 0.9;
+  transform: rotate(10deg);   /* ⭐ gentle upward tilt */
+  animation: shoot 4s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
-@keyframes shootingStar {
+@keyframes shoot {
   0% {
+    transform: translateX(0) translateY(0) rotate(10deg);
     opacity: 0;
-    transform: translate(0, 0) rotate(45deg) scale(0.8);
   }
   10% {
     opacity: 1;
   }
-  20% {
-    transform: translate(300px, 300px) rotate(45deg) scale(1);
-    opacity: 0.8;
+  40% {
+    transform: translateX(700px) translateY(-40px) rotate(10deg);
+    /* ⭐ negative Y = moves UP slightly */
+    opacity: 0.9;
   }
-  30% {
+  60% {
     opacity: 0;
   }
   100% {
     opacity: 0;
   }
 }
+
 
 /* ===========================
    TWINKLING STARS
@@ -81,9 +105,6 @@ body {
   50% { opacity: 1; transform: scale(1.4); }
 }
 
-/* ===========================
-   TWINKLING STARS
-   =========================== */
 
 /* Mini Menu */
 .mini-menu {
@@ -93,12 +114,10 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
-
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
   padding: 10px 22px;
   border-radius: 14px;
-
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   z-index: 9999;
 }
@@ -143,15 +162,7 @@ html {
   height: 40px; /* reserves space for icons */
 }
 
-
-/* Smooth transitions for background and text colors */
-.app-container {
-  animation: parallaxDrift var(--parallax-speed) ease-in-out infinite alternate;
-}
-
-.app-container::before {
-  animation: skyDrift var(--overlay-drift) ease-in-out infinite;
-}
+/* Smooth transitions for background and text colors and Galaxy Night sky */
 
 .star-shimmer::after {
   opacity: var(--shimmer-strength);
@@ -381,15 +392,18 @@ html {
 }
 
 
-/* Frosted glass overlay for better text contrast */
+/* Frosted glass overlay for better text contrast
+
 .frost-overlay {
-  background: rgba(255, 180, 140, 0.18); /* warm tint, not too bright */
-  backdrop-filter: blur(16px);           /* dreamy, soft-focus blur */
-  -webkit-backdrop-filter: blur(16px);
-  z-index: 0;
-}
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2; /* behind night sky
+  opacity: 0.15; /* or whatever you want
+} */
 
 /* Sunrise Bloom Layer */
+
 .app-container::after {
   content: "";
   position: absolute;
@@ -853,7 +867,7 @@ background-position: top center;
     evergreenGlow 6s ease-in-out infinite;
 }
 
-/* Gradient shimmer overlay */
+/* Gradient shimmer overlay
 .evergreen-quote {
   background: linear-gradient(
     90deg,
@@ -869,7 +883,7 @@ background-position: top center;
     shimmer 12s ease-in-out infinite;
 }
 
-/* Slow shimmer */
+/* Slow shimmer
 @keyframes shimmer {
   0%   { background-position: 0% 0; }
   50%  { background-position: 100% 0; }
@@ -956,25 +970,7 @@ background-position: top center;
   );
 }
 
-/* ------------------------------------------------------ */
-/*  MOON PHASE BACKGROUND CLASSES                         */
-/* ------------------------------------------------------ */
 
-.moon-new {
-  background: var(--moon-new);
-}
-
-.moon-waxing {
-  background: var(--moon-waxing);
-}
-
-.moon-full {
-  background: var(--moon-full);
-}
-
-.moon-waning {
-  background: var(--moon-waning);
-}
 
 /* Optional soft glow for full moon */
 .moon-full {
@@ -1117,6 +1113,25 @@ background-position: top center;
   100% { transform: translateX(0); }
 }
 
+/* ===========================
+   TASK GEMS SYSTEM
+   =========================== */
+
+/* 1. Base gem structure */
+.task-gem {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+  gap: 0.6rem;
+}
+
 
 /* ===========================
    CINEMATIC GEM LAYERS
@@ -1141,7 +1156,7 @@ background-position: top center;
   z-index: 0;
 }
 
-/* Glossy surface layer */
+/* Glossy surface layer
 .gem-body {
   position: absolute;
   inset: 0;
@@ -1154,26 +1169,13 @@ background-position: top center;
   );
   mix-blend-mode: screen;
   pointer-events: none;
+} */
+
+.gem-body {
+  background: none !important;
 }
 
-/* ===========================
-   TASK GEMS SYSTEM
-   =========================== */
 
-/* 1. Base gem structure */
-.task-gem {
-  padding: 0.75rem 1rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-/*background removed so mood classes can take over */
-  transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-  cursor: pointer;
-}
 
 /* 1b. Gem checkmark */
 .gem-check {
@@ -1198,55 +1200,71 @@ background-position: top center;
   cursor: default;
 }
 
-/* 2. Mood color variants */
-/* === NEW MAPPINGS FOR YOUR POETIC MOODS === */
+/* === MOOD COLOUR SYSTEM (FINAL CLEAN VERSION) === */
 
 /* earlyMorning → dawn */
-.gem-earlyMorning { background: var(--dawn-accent); }
-.gem-earlyMorning .gem-glow { background: var(--dawn-accent); }
-.gem-earlyMorning .gem-body {
+.gem-earlyMorning,
+.gem-sunrise,
+.gem-dawn {
+  background: var(--dawn-accent);
+}
+.gem-earlyMorning .gem-glow,
+.gem-sunrise .gem-glow,
+.gem-dawn .gem-glow {
+  background: var(--dawn-accent);
+}
+.gem-earlyMorning .gem-body,
+.gem-sunrise .gem-body,
+.gem-dawn .gem-body {
   background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05));
 }
 
-/* sunrise → dawn */
-.gem-sunrise { background: var(--dawn-accent); }
-.gem-sunrise .gem-glow { background: var(--dawn-accent); }
-.gem-sunrise .gem-body {
-  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05));
+/* day */
+.gem-day {
+  background: var(--day-accent);
+}
+.gem-day .gem-glow {
+  background: var(--day-accent);
+}
+.gem-day .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,200,0.05));
 }
 
 /* sunset → dusk */
-.gem-sunset { background: var(--dusk-accent); }
-.gem-sunset .gem-glow { background: var(--dusk-accent); }
-.gem-sunset .gem-body {
+.gem-sunset,
+.gem-dusk {
+  background: var(--dusk-accent);
+}
+.gem-sunset .gem-glow,
+.gem-dusk .gem-glow {
+  background: var(--dusk-accent);
+}
+.gem-sunset .gem-body,
+.gem-dusk .gem-body {
   background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,180,255,0.05));
 }
 
-.gem-dawn  { background: var(--dawn-accent); }
-.gem-day   { background: var(--day-accent); }
-.gem-dusk  { background: var(--dusk-accent); }
-.gem-night { background: var(--night-accent); }
-.gem-moon  { background: var(--moon-accent); }
-.gem-lateNight { background: var(--lateNight-accent); }
+/* night */
+.gem-night {
+  background: var(--night-accent);
+}
+.gem-night .gem-glow {
+  background: var(--night-accent);
+}
+.gem-night .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(180,200,255,0.05));
+}
 
-
-/* Mood glow colors */
-.gem-dawn  .gem-glow { background: var(--dawn-accent); }
-.gem-day   .gem-glow { background: var(--day-accent); }
-.gem-dusk  .gem-glow { background: var(--dusk-accent); }
-.gem-night .gem-glow { background: var(--night-accent); }
-.gem-moon  .gem-glow { background: var(--moon-accent); }
-.gem-lateNight .gem-glow { background: var(--lateNight-accent);opacity: 0.55;}
-
-
-/* Mood tint on the glossy body */
-.gem-dawn  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,200,200,0.05)); }
-.gem-day   .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,200,0.05)); }
-.gem-dusk  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,180,255,0.05)); }
-.gem-night .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(180,200,255,0.05)); }
-.gem-moon  .gem-body { background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(200,200,255,0.05)); }
-.gem-lateNight .gem-body { background: linear-gradient( 145deg, rgba(255,255,255,0.25), rgba(180,190,255,0.05) ); }
-.gem-lateNight .gem-body { background: linear-gradient( 145deg,  rgba(255,255,255,0.25),   rgba(180,190,255,0.05)  ); }
+/* lateNight */
+.gem-lateNight {
+  background: var(--lateNight-accent);
+}
+.gem-lateNight .gem-glow {
+  background: var(--lateNight-accent);
+}
+.gem-lateNight .gem-body {
+  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(180,190,255,0.05));
+}
 
 
 /* 3. Interaction states */
@@ -1302,10 +1320,6 @@ background-position: top center;
 /* ===========================
    GEM INTERNAL LAYOUT
    =========================== */
-
-.task-gem {
-  gap: 0.6rem; /* gentle breathing room */
-}
 
 .task-text {
   flex: 1; /* lets the text expand naturally */
@@ -1720,10 +1734,12 @@ transition: background 2s ease, backdrop-filter 2s ease;
 /* === JOURNAL ENTRIES STYLES ====================================== */
 
 .journal-input-wrapper {
-  margin-bottom: 0.8rem;
-  padding-bottom: 0.4rem;
+  width: 100%;
+  max-width: 600px; /* or whatever feels right */
+  margin: 0 auto;   /* centers it */
+  position: relative;
+  z-index: 2;       /* above night sky */
 }
-
 
 .journal-entries {
   width: 100%;
