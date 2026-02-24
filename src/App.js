@@ -94,10 +94,10 @@ function App() {
 
   // 5. MOOD LOGIC
   let moodKey;
-  if (hour >= 2 && hour < 5) moodKey = "dawn";
-  else if (hour >= 5 && hour < 12) moodKey = "dawn";
+  if (hour >= 2 && hour < 5) moodKey = "earlyMorning";
+  else if (hour >= 5 && hour < 12) moodKey = "sunrise";
   else if (hour >= 12 && hour < 17) moodKey = "day";
-  else if (hour >= 17 && hour < 22) moodKey = "dusk";
+  else if (hour >= 17 && hour < 22) moodKey = "sunset";
   else if (hour >= 22 && hour < 23) moodKey = "night";
   else moodKey = "lateNight";
 
