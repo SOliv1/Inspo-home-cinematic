@@ -502,7 +502,19 @@ function App() {
               <a href="#top" className="back-to-top">
                 Back to top ↑
               </a>
-
+              <section className="preview-stars">
+                <h2 className="section-title">✨ Cinematic Previews</h2>
+              
+                <a 
+                  href="https://699c6d8509f37a00082221e8--inspo-home-cinamatic.netlify.app"
+                  className="preview-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🌌 Galaxy Stars Version
+                </a>
+              </section>
+                    
               <div className="section-divider"></div>
 
               <div id="footer">
