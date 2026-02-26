@@ -65,7 +65,9 @@ function App() {
   }, []);
 
  return (
-<body className={`app-body ${greetingClass}`}>
+  <>
+  <div id="top"></div>
+   
   <main className="app-shell">
     <div className="frost-overlay"></div>
     <div className="app-content">
@@ -110,11 +112,7 @@ function App() {
 
     </div>
   </main>
-
-  );
-</body>
-
-  );
-}
+</>
+);
 
 export default App;
