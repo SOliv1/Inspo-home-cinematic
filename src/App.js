@@ -510,7 +510,7 @@ function App() {
               
                 <a 
                   href="https://699c6d8509f37a00082221e8--inspo-home-cinamatic.netlify.app"
-                  className="preview-button"
+                  className="preview-link ember-glow-calm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
