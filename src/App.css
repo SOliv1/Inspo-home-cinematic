@@ -66,6 +66,31 @@ CREATIVE PREVIEWS PSHOOTING STAR
   transform: translateY(-2px);
 }
 
+/* Ember Arc Glows */
+
+.ember-glow {
+  color: #F2C98F; /* your ember-arc gold */
+  text-shadow:
+    0 0 6px rgba(242, 201, 143, 0.45),
+    0 0 12px rgba(242, 201, 143, 0.35),
+    0 0 22px rgba(242, 201, 143, 0.25);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.ember-glow:hover {
+  text-shadow:
+    0 0 8px rgba(242, 201, 143, 0.55),
+    0 0 18px rgba(242, 201, 143, 0.45),
+    0 0 28px rgba(242, 201, 143, 0.35);
+}
+
+.ember-glow-night {
+  color: #F2C98F;
+  text-shadow:
+    0 0 6px rgba(180, 160, 120, 0.4),
+    0 0 14px rgba(120, 140, 180, 0.35),
+    0 0 26px rgba(80, 100, 160, 0.25);
+}
 
 
 /* ===========================
