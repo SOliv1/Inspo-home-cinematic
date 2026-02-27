@@ -205,13 +205,6 @@ function App() {
           <div className="shooting-star"></div>
         </div>
       )}
-    </div>
-
-
-
-
-    <div className="sky-fade"></div>
-    <div className="sky-fade-sides"></div>
 
     <div className={`app-body ${greetingClass}`}>
       <main className={`app-shell ${seasonKey} ${moodKey}`}>
