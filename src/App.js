@@ -104,7 +104,7 @@ function App() {
   const mood = moods[moodKey];
     if (!mood) {
   console.warn("Invalid moodKey:", moodKey);
-  }
+  };
 
 
 
@@ -120,7 +120,7 @@ function App() {
     spring: "New beginnings bloom softly.",
     summer: "Warmth finds its way into everything.",
     autumn: "Let go gently, and let beauty remain."
-  };
+  }
 
   // --- SEASON LOGIC ---
   function getSeasonFromMonth() {
@@ -136,8 +136,6 @@ function App() {
   const quote = seasonalQuotes[seasonKey]
 
   const moonPhase = Math.floor((new Date().getDate() % 29) / 7);
-
-
 
   useEffect(() => {
     if (!manualSeason) {
@@ -167,7 +165,7 @@ function App() {
 
   window.addEventListener("scroll", handleScroll);
   return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+}, [])
 
 
   // SCROLL FADE EFFECT
@@ -191,26 +189,30 @@ function App() {
   // --- JSX ---
   return (
     <>
-    <div id="top"></div>  
+    <div id="top"></div>
     <div className={`app-container ${moodKey}`}>
       {moodKey === "lateNight" && (
-      <div className="night-sky">
-        <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
-        <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
-        <div className="twinkle-star" style={{ top: "22%", left: "75%" }}></div>
-        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
-        <div className="twinkle-star" style={{ top: "5%", left: "60%" }}></div>
-        <div className="twinkle-star" style={{ top: "25%", left: "10%" }}></div>
-        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
-         {/* ⭐ Twinkling stars & Shooting Star */}
+        <div className="night-sky">
+          <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
+          <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
+          <div className="twinkle-star" style={{ top: "22%", left: "75%" }}></div>
+          <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+          <div className="twinkle-star" style={{ top: "5%", left: "60%" }}></div>
+          <div className="twinkle-star" style={{ top: "25%", left: "10%" }}></div>
+          <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+            {/* ⭐ Twinkling stars & Shooting Star */}
 
-        <div className="shooting-star"></div>
-      </div>
-    )}
-    
+          <div className="shooting-star"></div>
+        </div>
+      )}
+    </div>
+
+
+
+
     <div className="sky-fade"></div>
     <div className="sky-fade-sides"></div>
-      
+
     <div className={`app-body ${greetingClass}`}>
       <main className={`app-shell ${seasonKey} ${moodKey}`}>
         <div className="season-controls">
@@ -508,7 +510,7 @@ function App() {
                 Back to top ↑
               </a>
 
-              <a 
+              <a
                 href="https://699c6d8509f37a00082221e8--inspo-home-cinamatic.netlify.app/"
                 className={`preview-link ember-glow-calm ${seasonKey}`}
                 target="_blank"
@@ -517,8 +519,8 @@ function App() {
                 🌌 Galaxy Stars Version
               </a>
 
-              
-                    
+
+
               <div className="section-divider"></div>
 
               <div id="footer">
@@ -561,7 +563,7 @@ function App() {
         </div>
       </main>
     </div>
-  </div>
+  </>
   );
 }
 
