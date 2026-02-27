@@ -541,12 +541,12 @@ return (
       </div>
       {/* CLOSE app-body */}
 
-    </div> 
+    </div>
     {/* CLOSE app-container */}
 
   </>
 
-);
+)
 
 }
 
