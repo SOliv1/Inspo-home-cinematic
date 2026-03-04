@@ -191,7 +191,7 @@ function App() {
   // --- JSX ---
   return (
     <>
-    <div id="top"></div>  
+    <div id="top"></div>
     <div className={`app-container ${moodKey}`}>
       {moodKey === "lateNight" && (
       <div className="night-sky">
@@ -207,10 +207,10 @@ function App() {
         <div className="shooting-star"></div>
       </div>
     )}
-    
+
     <div className="sky-fade"></div>
     <div className="sky-fade-sides"></div>
-      
+
     <div className={`app-body ${greetingClass}`}>
       <main className={`app-shell ${seasonKey} ${moodKey}`}>
         <div className="season-controls">
@@ -504,11 +504,12 @@ function App() {
 
             {/* FOOTER */}
             <footer className="QuotesFooter">
+
               <a href="#top" className="back-to-top">
                 Back to top ↑
               </a>
 
-              <a 
+              <a
                 href="https://699c6d8509f37a00082221e8--inspo-home-cinamatic.netlify.app/"
                 className={`preview-link ember-glow-calm ${seasonKey}`}
                 target="_blank"
@@ -517,17 +518,13 @@ function App() {
                 🌌 Galaxy Stars Version
               </a>
 
-              
-                    
               <div className="section-divider"></div>
 
               <div id="footer">
                 <p className="inspo-quote fade_on_scroll">
-                  "The Only way to do great work is to love what you do."
+                  "The only way to do great work is to love what you do." ~ Steve Jobs ~
                 </p>
               </div>
-
-              <p className="quote-author">– Steve Jobs</p>
 
               <div className="siteFooter">
                 <p>Made with care by Sara for KUK @ 2026</p>
@@ -556,13 +553,18 @@ function App() {
                   </a>
                 </div>
               </div>
+
             </footer>
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
-  );
-}
+            </div> {/* closes main-grid */}
+          </div> {/* closes app-content */}
+          </main>
+
+          </div> {/* closes app-body */}
+          </div> {/* closes app-container */}
+          </>
+          );
+          }
 
 export default App;
+
+
