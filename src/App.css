@@ -15,6 +15,22 @@ body {
   overflow-y: auto;
 }
 
+.logo-wrapper {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.App-logo {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+
 .app-body,
 .app-content,
 .main-grid {
@@ -29,7 +45,6 @@ html {
     height: 100%;
     scroll-behavior: smooth;
 }
-
 
     /* Add breathing room to the whole page */
 
@@ -52,18 +67,6 @@ html {
   z-index: 1;
 }
 
-.app-content,
-.main-grid {
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-*/
-
-
-
-
-
 */
 
 .app-content,
@@ -72,7 +75,30 @@ html {
   position: relative;
   z-index: 1;
 }
-*/
+
+
+.top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+
+.top-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.top-menu {
+  margin-left: 60px; /* space for the logo */
+}
 
 
 /* ===========================
@@ -635,6 +661,25 @@ html {
   background-position: center;
   background-attachment: fixed;
   transition: background-image 1.2s ease-in-out;
+}
+
+.greeting-latenight {
+  border-radius: 1.6rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px rgba(20, 20, 40, 0.35);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/*
+.greeting-latenight {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1.2rem;
+  padding: 0.9rem 1.3rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 14px rgba(20, 20, 40, 0.35);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 
@@ -1591,6 +1636,7 @@ background-position: top center;
   border-radius: 18px;
   padding: 1.1rem 1.3rem 1.4rem;
 }
+
 
 /* Left column spacing */
 .header-left {

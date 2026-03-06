@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { WeatherPanel } from "./features/weather/WeatherPanel";
+import silverLogo from './assets/logo-silver.png';
+import warmLogo from './assets/logo-warm.png';
+
+
+
+
 
 function App() {
   // 1. STATE
@@ -11,6 +17,7 @@ function App() {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+
 
   // Load saved tasks on mount
   useEffect(() => {
@@ -79,9 +86,6 @@ function App() {
   const evergreenQuote =
   "There's a quiet wisdom inside you. Listen, and follow where it leads.";
 
-
-
-
   // 4. MOODS
   const moods = {
     night: { class: "greeting-night", icon: () => "🌌" },
@@ -100,13 +104,30 @@ function App() {
   else if (hour >= 17 && hour < 22) moodKey = "sunset";
   else if (hour >= 22 && hour < 23) moodKey = "night";
   else moodKey = "lateNight";
-
   const mood = moods[moodKey];
     if (!mood) {
   console.warn("Invalid moodKey:", moodKey);
   }
 
 
+  // --- Logo Seasonal Date
+function getSeason() {
+  const month = new Date().getMonth(); // 0 = Jan, 11 = Dec
+  if (month === 11 || month <= 1) return 'winter';
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 5 && month <= 7) return 'summer';
+  if (month >= 8 && month <= 10) return 'autumn';
+}
+  // --- Logo Seasonal Time of Day
+function getTimeOfDay() {
+  const hour = new Date().getHours();
+  if (hour >= 0 && hour < 6) return 'night';
+  if (hour >= 6 && hour < 10) return 'dawn';
+  if (hour >= 10 && hour < 17) return 'day';
+  if (hour >= 17 && hour < 20) return 'dusk';
+  return 'night';
+}
+  // -------------------------------
 
   // 6. GREETING MACHINE
   const greeting = greetingSets[greetingMode][moodKey];
@@ -186,14 +207,21 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  // --- Seasonal & Time Helpers ---
+  const currentSeason = getSeason(); // e.g., 'winter', 'spring', etc.
+  const currentTime = getTimeOfDay(); // e.g., 'night', 'morning', etc.
+  const logoSrc =
+  currentSeason === 'winter' || currentTime === 'night' || currentTime === 'dawn'
+    ? silverLogo
+    : warmLogo;
 
 
   // --- JSX ---
+
   return (
     <>
     <div id="top"></div>
     <div className={`app-container ${moodKey}`}>
-      {moodKey === "lateNight" && (
       <div className="night-sky">
         <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
         <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
@@ -206,7 +234,7 @@ function App() {
 
         <div className="shooting-star"></div>
       </div>
-    )}
+    )
 
     <div className="sky-fade"></div>
     <div className="sky-fade-sides"></div>
@@ -282,10 +310,11 @@ function App() {
         <div className="frost-overlay"></div>
         <div className="app-content">
           <div className="main-grid">
+
             {/* LEFT COLUMN */}
             <div className="left-column">
-
               <header className="app-header">
+                <img src={logoSrc} className="top-logo" alt="" />
                 <nav className="mini-menu">
                   <div id="top"></div>
                   <a href="#todos">To‑Dos</a>
