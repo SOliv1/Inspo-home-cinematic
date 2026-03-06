@@ -1821,13 +1821,15 @@ background-position: top center;
 .greeting-latenight {
   background: linear-gradient(
     135deg,
-    rgba(0, 0, 5, 0.9),     /* near-black midnight */
-    rgba(0, 0, 20, 0.85),   /* deep navy */
-    rgba(5, 5, 35, 0.75)    /* starlit indigo */
+    rgba(0, 0, 5, 0.9),
+    rgba(0, 0, 20, 0.85),
+    rgba(5, 5, 35, 0.75)
   );
-backdrop-filter: blur(2px);
-transition: background 2s ease, backdrop-filter 2s ease;
+  backdrop-filter: blur(2px);
+  transition: background 2s ease, backdrop-filter 2s ease;
+  border-radius: 20px; /* soft, cinematic rounding */
 }
+
 
 .greeting-night .dynamic-greeting,
 .greeting-latenight .dynamic-greeting {
