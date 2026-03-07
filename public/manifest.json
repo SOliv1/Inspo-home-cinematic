@@ -3,13 +3,13 @@
   "short_name": "Seasonal Glow App",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F6C7B2",
-  "theme_color": "#F6C7B2",
+  
   "icons": [
   {
     "src": "favicon.png",
     "sizes": "512x512",
-    "type": "image/png"
+    "type": "image/png",
+    "purpose": "any maskable"
   }
 ]
 
