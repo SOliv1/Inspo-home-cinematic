@@ -301,7 +301,13 @@ function getTimeOfDay() {
             {/* LEFT COLUMN */}
             <div className="left-column">
               <header className="app-header">
-                <img src={logoSrc} className="top-logo" alt="" />
+
+                     {/* GLOWING MOUNTAIN ORB */}
+                <img
+                   src={logoSrc}
+                  className={`top-logo ${logoSrc === silverLogo ? 'silver' : 'warm'}`} alt="Glowing Mountain Logo Orb" 
+                />
+
                 <nav className="mini-menu">
                   <div id="top"></div>
                   <a href="#todos">To‑Dos</a>

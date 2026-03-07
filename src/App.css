@@ -77,6 +77,9 @@ html {
   z-index: 1;
 }
 
+/* ===========================
+    THE ORB LOGO ANIMATIONS
+   =========================== */
 
 .top-bar {
   position: absolute;
@@ -90,12 +93,50 @@ html {
   padding-left: 16px;
 }
 
+/* Shared animation */
 .top-logo {
-  height: 40px;
-  width: 40px;
-  object-fit: contain;
-  pointer-events: none;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.6s ease, filter 1.2s ease;
+  animation: logoGlow 6s ease-in-out infinite;
 }
+
+/* Ember glow */
+.top-logo.warm {
+  --glow: rgba(255, 180, 120, 0.55);
+}
+
+/* Moonlit glow */
+.top-logo.silver {
+  --glow: rgba(180, 200, 255, 0.55);
+}
+
+.top-logo {
+  filter: drop-shadow(0 0 4px var(--glow));
+  animation: logoGlow 6s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+  0% {
+    filter: drop-shadow(0 0 4px var(--glow));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px var(--glow));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px var(--glow));
+  }
+}
+
+.top-logo:hover {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 18px var(--glow));
+}
+
+
+
+
+
 
 .top-menu {
   margin-left: 60px; /* space for the logo */
@@ -992,6 +1033,9 @@ background-position: top center;
 
 /* === WARMER DYNAMIC GREETING STYLES ======================= */
 .dynamic-greeting {
+  display: flex;
+  align-items: center;
+  transform: translateY(6px); /*gentle cinematic drop */
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.4px;
@@ -1909,13 +1953,24 @@ background-position: top center;
 }
 
 
-.greeting-icon {
+ /* Greeting Icon */
+
+ .greeting-icon {
   display: inline-block;
-  margin-right: 0.4rem;
-  font-size: 1.8rem;
-  filter: none;
-  opacity: 0.9;
+  transform: translate(3px);
+  font-size: 1.25rem;  /* smaller, respectful */
+  opacity: 0.85;
+  text-shadow:
+    0 0 4px rgba(255, 200, 150, 0.35),
+    0 0 8px rgba(255, 170, 120, 0.25);
 }
+
+
+.greeting-icon {
+  margin-left: auto;
+  margin-right: 0.3rem; /* gentle breathing room */
+}
+
 
  .greeting-icon {
   text-shadow:
