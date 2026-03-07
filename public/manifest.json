@@ -6,7 +6,11 @@
   "background_color": "#F6C7B2",
   "theme_color": "#F6C7B2",
   "icons": [
-    { "src": "/icons/public/peach-white-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icons/public/soft-white-152.png", "sizes": "512x512", "type": "image/png" }
-  ]
+  {
+    "src": "favicon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }
+]
+
 }
