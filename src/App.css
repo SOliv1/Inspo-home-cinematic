@@ -1861,8 +1861,16 @@ background-position: top center;
   backdrop-filter: blur(2px);
   transition: background 2s ease, backdrop-filter 2s ease;
   border-radius: 20px; /* soft, cinematic rounding */
-  padding: 18px 24px;  /* generous breathing room */
+  padding: 20px 28px; /* a touch more breathing room */
+  line-height: 1.4;   /* improves readability and softness */
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.12); /* moonlit softness */
+  opacity: 0;
+  animation: fadeInNight 1.6s ease forwards;
+}
+
+@keyframes fadeInNight {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .greeting-latenight {
