@@ -9,7 +9,7 @@ const taglines = {
       "Begin where the warmth is."
     ],
     tender: [
-      "The day opens quietly—choose the next frame with care.",
+      "The day opens quietly; choose the next frame with care.",
       "Let clarity arrive in small, kind pieces."
     ]
   },
@@ -21,7 +21,7 @@ const taglines = {
     ],
     tender: [
       "One clear action brings the whole day into focus.",
-      "Breathe, choose, begin—the rest will follow."
+      "Breathe, choose, begin; the rest will follow."
     ]
   },
 

@@ -11,7 +11,8 @@ import {
 } from './utils/season';
 
 import { seasonalQuotes } from './utils/season';
-import { getTagline } from "../utils/taglineEngine";
+import { getTagline } from "./utils/tagline/taglineEngine";
+
 
 function App() {
   // 1. STATE
@@ -141,8 +142,8 @@ function getTimeOfDay() {
 
 
   // --- SEASON LOGIC ---
-  function getSeasonFromMonth() {
-    const month = new Date().getMonth();
+function getSeasonFromMonth() {
+  const month = new Date().getMonth();
     if (month === 11 || month <= 1) return "winter";
     if (month >= 2 && month <= 4) return "spring";
     if (month >= 5 && month <= 7) return "summer";
@@ -209,18 +210,14 @@ function getTimeOfDay() {
     ? silverLogo
     : warmLogo;
 
-// --- Seasonal Taglines ---
+  // --- Seasonal Taglines ---
 
-function App() {
   const [tagline, setTagline] = useState("");
 
   useEffect(() => {
-    const line = getTagline("neutral");
+    const line = getTagline("moodKey");
     setTagline(line);
-  }, []);
-
-
-
+  }, [moodKey]);
 
 
   // --- JSX ---
@@ -228,7 +225,7 @@ function App() {
   return (
     <>
     <div id="top"></div>
-    <div className={`app-container ${moodKey}`}>
+    <div className={`app-container ${moodKey} ${seasonKey}`}>
 
       <div className="night-sky">
         <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
@@ -368,9 +365,9 @@ function App() {
                     </div>
                   </div>
 
-                  <h1 className="app-title">Daily Checklist</h1>
+                    <h1 className="app-title">Daily Checklist</h1>
                   <div className="cinematic-tagline">{tagline}</div>
-                </header>
+              </header>
 
                 {/* NEW TASK BAR */}
                 <div id="todos"></div>
@@ -582,8 +579,7 @@ function App() {
     {/* CLOSE app-container */}
 
   </>
-
-)
+  )
 
 }
 

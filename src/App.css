@@ -652,6 +652,36 @@ html {
   );
 }
 
+/* Greeting Tag Lines Mood Colours */
+
+.cinematic-tagline {
+  animation-delay: 0.3s;
+}
+
+.sunrise .cinematic-tagline {
+  color: #ffcf8f;
+}
+
+.day .cinematic-tagline {
+  color: #ffd966;
+}
+
+.sunset .cinematic-tagline {
+  color: #ff9e7a;
+}
+
+.night .cinematic-tagline {
+  color: #b0c4ff;
+}
+
+.lateNight .cinematic-tagline {
+  color: #d7d7ff;
+}
+
+.earlyMorning .cinematic-tagline {
+  color: #f6d8ff;
+}
+
 
 /* Frosted glass overlay for better text contrast
 
