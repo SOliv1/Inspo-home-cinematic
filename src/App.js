@@ -247,7 +247,7 @@ useEffect(() => {
   return (
     <>
     <div id="top"></div>
-    <div className={`app-container ${moodKey} ${seasonKey}`}>
+    <div className={`app-container ${moodKey} ${seasonKey}`}></div>
 
       <div className="night-sky">
         <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
