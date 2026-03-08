@@ -11,7 +11,7 @@ import {
 } from './utils/season';
 
 import { seasonalQuotes } from './utils/season';
-
+import { getTagline } from "../utils/taglineEngine";
 
 function App() {
   // 1. STATE
@@ -209,6 +209,16 @@ function getTimeOfDay() {
     ? silverLogo
     : warmLogo;
 
+// --- Seasonal Taglines ---
+
+function App() {
+  const [tagline, setTagline] = useState("");
+
+  useEffect(() => {
+    const line = getTagline("neutral");
+    setTagline(line);
+  }, []);
+
 
 
 
@@ -219,6 +229,7 @@ function getTimeOfDay() {
     <>
     <div id="top"></div>
     <div className={`app-container ${moodKey}`}>
+
       <div className="night-sky">
         <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
         <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
@@ -358,7 +369,7 @@ function getTimeOfDay() {
                   </div>
 
                   <h1 className="app-title">Daily Checklist</h1>
-                  <p className="app-subtitle">Light, colourful to-dos for a focused day.</p>
+                  <div className="cinematic-tagline">{tagline}</div>
                 </header>
 
                 {/* NEW TASK BAR */}
