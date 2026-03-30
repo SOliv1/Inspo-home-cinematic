@@ -88,6 +88,8 @@ export function WeatherPanel() {
   // Time of day logic
   const hour = new Date().getHours();
 
+
+
 // -------------------------
 // TIME OF DAY → timeOfDay
 // -------------------------
