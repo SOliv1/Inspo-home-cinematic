@@ -3,20 +3,19 @@ import { fetchCurrentWeather } from '../../api';
 
 // UK-style date in GMT
 function formatDate(now = new Date()) {
-  return now.toLocaleDateString('en-GB', {
-    timeZone: 'Etc/UTC',
-    weekday: 'long',
-    month: 'short',
-    day: 'numeric',
+  return now.toLocaleDateString("en-GB", {
+    timeZone: "Europe/London",
+    weekday: "long",
+    month: "short",
+    day: "numeric",
   });
 }
 
-// UK-style time in GMT
 function formatTime(now = new Date()) {
-  return now.toLocaleTimeString('en-GB', {
-    timeZone: 'Etc/UTC',
-    hour: '2-digit',
-    minute: '2-digit',
+  return now.toLocaleTimeString("en-GB", {
+    timeZone: "Europe/London",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 
