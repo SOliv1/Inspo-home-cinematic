@@ -30,7 +30,7 @@ function App() {
     const saved = localStorage.getItem("tasks");
     const savedCompleted = localStorage.getItem("completedTasks");
 
-    if (saved) setTasks(JSON.parse(saved));
+    if (saved) setTasks(JSON.parse(saved).reverse());
     if (savedCompleted) setCompletedTasks(JSON.parse(savedCompleted));
   }, []);
 
@@ -48,7 +48,7 @@ function App() {
   useEffect(() => {
     const savedEntries = localStorage.getItem("journalEntries");
     if (savedEntries) {
-      setEntries(JSON.parse(savedEntries));
+      setEntries(JSON.parse(savedEntries).reverse());
     }
   }, []);
 
@@ -457,7 +457,7 @@ function getSeasonFromMonth() {
                   <button
                     onClick={() => {
                       if (newTask.trim()) {
-                        setTasks([...tasks, { text: newTask, completed: false }]);
+                        setTasks([{ text: newTask, completed: false }, ...tasks]);
                         setNewTask("");
                       }
                     }}
@@ -530,7 +530,7 @@ function getSeasonFromMonth() {
                     className="add-button"
                     onClick={() => {
                       if (journalText.trim()) {
-                        setEntries([...entries, journalText]);
+                        setEntries([journalText, ...entries]);
                         setJournalText("");
                       }
                     }}
