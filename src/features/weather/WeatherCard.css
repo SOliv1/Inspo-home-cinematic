@@ -183,6 +183,8 @@
 .condition {
     font-size: 1.1rem;
     opacity: 0.85;
+    color: #fffaf3;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* Card container hover feel */
@@ -626,7 +628,8 @@
 .weather-condition {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #111827;
+  color: #fffaf3 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* feels like ... */
