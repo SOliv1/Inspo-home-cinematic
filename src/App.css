@@ -1192,6 +1192,7 @@ background-position: top center;
   display: flex;
   align-items: center;
   transform: translateY(6px); /*gentle cinematic drop */
+  margin: 0 0 1.15rem;
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0.4px;
@@ -1232,6 +1233,7 @@ background-position: top center;
 }
 
 .seasonal-whisper {
+  display: block;
   animation:
     whisperCrossfade 1.6s ease forwards 0.35s,
     whisperFloat 7s ease-in-out infinite 0.35s;
@@ -1244,7 +1246,7 @@ background-position: top center;
   position: relative;
   z-index: 12; /* safely above gradients, below UI */
   max-width: 70ch;
-  margin: 1.5rem auto 0;
+  margin: 2.1rem auto 0.85rem;
   padding: 0 1rem;
 
   font-size: 1.1rem;
@@ -1397,7 +1399,7 @@ background-position: top center;
 .seasonal-whisper {
   font-size: 0.9rem;
   opacity: 0;
-  margin-top: 0.4rem;
+  margin: 1rem auto 0;
   font-style: italic;
   animation:
     whisperFade 1.8s ease forwards,
