@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { WeatherPanel } from "./features/weather/WeatherPanel";
+import silverLogo from './assets/logo-silver.png';
+import warmLogo from './assets/logo-warm.png';
+import {
+  getSeason,
+  getSeasonalOrb,
+  getSeasonalAccent,
+  getSeasonalGreeting,
+} from './utils/season';
+
+import { seasonalQuotes } from './utils/season';
+import { getTagline } from "./utils/tagline/taglineEngine";
+
 
 function App() {
   // 1. STATE
@@ -11,6 +23,7 @@ function App() {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+
 
   // Load saved tasks on mount
   useEffect(() => {
@@ -79,9 +92,6 @@ function App() {
   const evergreenQuote =
   "There's a quiet wisdom inside you. Listen, and follow where it leads.";
 
-
-
-
   // 4. MOODS
   const moods = {
     night: { class: "greeting-night", icon: () => "🌌" },
@@ -100,13 +110,29 @@ function App() {
   else if (hour >= 17 && hour < 22) moodKey = "sunset";
   else if (hour >= 22 && hour < 23) moodKey = "night";
   else moodKey = "lateNight";
-
   const mood = moods[moodKey];
     if (!mood) {
   console.warn("Invalid moodKey:", moodKey);
   };
 
-
+  // --- Logo Seasonal Date
+function getSeason() {
+  const month = new Date().getMonth(); // 0 = Jan, 11 = Dec
+  if (month === 11 || month <= 1) return 'winter';
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 5 && month <= 7) return 'summer';
+  if (month >= 8 && month <= 10) return 'autumn';
+}
+  // --- Logo Seasonal Time of Day
+function getTimeOfDay() {
+  const hour = new Date().getHours();
+  if (hour >= 0 && hour < 6) return 'night';
+  if (hour >= 6 && hour < 10) return 'dawn';
+  if (hour >= 10 && hour < 17) return 'day';
+  if (hour >= 17 && hour < 20) return 'dusk';
+  return 'night';
+}
+  // -------------------------------
 
   // 6. GREETING MACHINE
   const greeting = greetingSets[greetingMode][moodKey];
@@ -114,34 +140,31 @@ function App() {
   const greetingIcon = mood.icon(hour);
 
 
-  // Seasonal quotes
-  const seasonalQuotes = {
-    winter: "Even the quiet season has its glow.",
-    spring: "New beginnings bloom softly.",
-    summer: "Warmth finds its way into everything.",
-    autumn: "Let go gently, and let beauty remain."
-  }
-
   // --- SEASON LOGIC ---
-  function getSeasonFromMonth() {
-    const month = new Date().getMonth();
+function getSeasonFromMonth() {
+  const month = new Date().getMonth();
     if (month === 11 || month <= 1) return "winter";
     if (month >= 2 && month <= 4) return "spring";
     if (month >= 5 && month <= 7) return "summer";
     return "autumn";
   }
 
-  const [seasonKey, setSeasonKey] = useState(getSeasonFromMonth());
+  const [seasonKey, setSeasonKey] = useState(getSeasonFromMonth() || "spring");
+  const quote =
+  (seasonalQuotes && seasonalQuotes[seasonKey]) ||
+  (seasonalQuotes && seasonalQuotes.winter) ||
+  "Default fallback quote";
   const [manualSeason, setManualSeason] = useState(false);
-  const quote = seasonalQuotes[seasonKey]
+
 
   const moonPhase = Math.floor((new Date().getDate() % 29) / 7);
 
   useEffect(() => {
     if (!manualSeason) {
-      setSeasonKey(getSeasonFromMonth());
+      setSeasonKey(getSeasonFromMonth() || "spring");
     }
   }, [manualSeason]);
+
 
   useEffect(() => {
     const shell = document.querySelector(".app-shell");
@@ -152,6 +175,7 @@ function App() {
     );
     return () => clearTimeout(timeout);
   }, [seasonKey]);
+
 
 
   useEffect(() => {
@@ -184,35 +208,102 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // --- JSX --- //
+  // --- Seasonal & Time Helpers ---
+  const currentSeason = getSeason(); // e.g., 'winter', 'spring', etc.
+  const currentTime = getTimeOfDay(); // e.g., 'night', 'morning', etc.
+  const logoSrc =
+  currentSeason === 'winter' || currentTime === 'night' || currentTime === 'dawn'
+    ? silverLogo
+    : warmLogo;
+
+  // --- Seasonal Taglines ---
+  const [tagline, setTagline] = useState("Welcome to your Seasonal Glow");
+
+  useEffect(() => {
+    setTagline(getTagline(moodKey));
+  }, [moodKey]);
 
 
-return (
+  // --- Rotate tagline every 45 seconds ---
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setTagline(getTagline(moodKey));
+  }, 45000);
+
+  return () => clearInterval(interval);
+  }, [moodKey]);
+
+
+  // --- Shimmer animation ---
+  useEffect(() => {
+  const el = document.querySelector('.cinematic-tagline');
+  if (!el) return;
+
+  el.classList.add('shimmer');
+  const timeout = setTimeout(() => el.classList.remove('shimmer'), 1400);
+
+  return () => clearTimeout(timeout);
+  }, [tagline]);
+
+
+  //--- Pulse animation ---
+  useEffect(() => {
+  const el = document.querySelector('.cinematic-tagline');
+  if (!el) return;
+
+  el.classList.add('glow-pulse');
+  const timeout = setTimeout(() => el.classList.remove('glow-pulse'), 1600);
+
+  return () => clearTimeout(timeout);
+  }, [moodKey]);
+
+  //--- Season Changes ---
+  useEffect(() => {
+  const el = document.querySelector('.cinematic-tagline');
+  if (!el) return;
+
+  el.classList.add('glow-seasonal');
+  }, [seasonKey]);
+
+
+
+
+  // --- JSX ---
+
+  return (
   <>
     <div id="top"></div>
+    <div
+      className={`app-container
+        mood-silhouette
+        ${moodKey || ""}
+        ${seasonKey || ""}
+        moon-${moonPhase || ""}`
+      }
+    >
 
-    {/* OPEN app-container */}
-    <div className={`app-container ${moodKey}`}>
 
-      {moodKey === "lateNight" && (
-        <div className="night-sky">
-          <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
-          <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
-          <div className="twinkle-star" style={{ top: "22%", left: "75%" }}></div>
-          <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
-          <div className="twinkle-star" style={{ top: "5%", left: "60%" }}></div>
-          <div className="twinkle-star" style={{ top: "25%", left: "10%" }}></div>
-          <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+      {/* NIGHT SKY */}
+      <div className="night-sky">
+        <div className="twinkle-star" style={{ top: "12%", left: "15%" }}></div>
+        <div className="twinkle-star" style={{ top: "18%", left: "55%" }}></div>
+        <div className="twinkle-star" style={{ top: "22%", left: "75%" }}></div>
+        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+        <div className="twinkle-star" style={{ top: "5%", left: "60%" }}></div>
+        <div className="twinkle-star" style={{ top: "25%", left: "10%" }}></div>
+        <div className="twinkle-star" style={{ top: "8%", left: "35%" }}></div>
+         {/* ⭐ Twinkling stars & Shooting Star */}
+        <div className="shooting-star"></div>
+      </div>
 
-          <div className="shooting-star"></div>
-        </div>
-      )}
+      <div className="sky-fade"></div>
+      <div className="sky-fade-sides"></div>
 
-      {/* OPEN app-body */}
+      {/* APP BODY */}
       <div className={`app-body ${greetingClass}`}>
 
-        {/* OPEN app-shell */}
-        <main className={`app-shell ${seasonKey} ${moodKey}`}>
+        {/* APP SHELL */}
+        <div className={`app-shell ${seasonKey} ${moodKey}`}>
 
           {/* SEASON CONTROLS */}
           <div className="season-controls">
@@ -223,21 +314,18 @@ return (
               >
                 ❄️ Winter
               </button>
-
               <button
                 className={`spring ${seasonKey === "spring" ? "active" : ""}`}
                 onClick={() => { setManualSeason(true); setSeasonKey("spring"); }}
               >
                 🌸 Spring
               </button>
-
               <button
                 className={`summer ${seasonKey === "summer" ? "active" : ""}`}
                 onClick={() => { setManualSeason(true); setSeasonKey("summer"); }}
               >
                 ☀️ Summer
               </button>
-
               <button
                 className={`autumn ${seasonKey === "autumn" ? "active" : ""}`}
                 onClick={() => { setManualSeason(true); setSeasonKey("autumn"); }}
@@ -267,21 +355,34 @@ return (
             </div>
           </div>
 
-          {/* FROST OVERLAY */}
+          {/* FROST OVERLAYS */}
+          <div className="frost-overlay"></div>
           <div className="frost-overlay"></div>
 
-          {/* OPEN app-content */}
+          {/* APP CONTENT */}
           <div className="app-content">
 
-            {/* OPEN main-grid */}
-            <div className="main-grid">
+            {/* MAIN GRID */}
+            <main className="main-grid">
 
               {/* LEFT COLUMN */}
               <div className="left-column">
-
                 <header className="app-header">
+                  <div className="orb-wrapper">
+                    {/* ORB */}
+                    <img
+                      src={logoSrc}
+                      className={`top-logo ${logoSrc === silverLogo ? "silver" : "warm"}`}
+                      alt="Glowing Mountain Logo Orb"
+                    />
+                    {/* TAGLINE */}
+                    <div className="cinematic-tagline">{tagline}</div>
+
+
+                  </div>
+                  {/* MENU */}
                   <nav className="mini-menu">
-                    {/* REMOVE duplicate #top */}
+                    <div id="top"></div>
                     <a href="#todos">To‑Dos</a>
                     <a href="#thoughts">Thoughts</a>
                     <a href="#weather">Weather</a>
@@ -289,18 +390,28 @@ return (
                     <a href="#footer">Footer</a>
                   </nav>
 
+                  {/* GREETING */}
                   <div className={greetingClass}>
                     <p className="dynamic-greeting">
                       <span className="greeting-icon">{greetingIcon}</span>
                       {greeting}
                     </p>
 
+                        {/*  EVERGREEN-QUOTE */}
                     <p
-                      key={`evergreen-${seasonKey}-${moodKey}`}
-                      className={`evergreen-quote ${seasonKey} ${moodKey} moon-${moonPhase}`}
+                      key={`evergreen-${seasonKey || ""}-${moodKey || ""}`}
+                      className={`evergreen-quote shimmer ${seasonKey || ""} ${moodKey || ""} moon-${moonPhase || ""}`}
                     >
                       {evergreenQuote}
                     </p>
+
+                    {/* NIGHT TIME ONLY OPTION
+                    <p
+                      key={`evergreen-${seasonKey}-${moodKey}`}
+                      className={`evergreen-quote ${isNight ? "shimmer" : ""} ${seasonKey} ${moodKey} moon-${moonPhase}`}
+                    >
+                      {evergreenQuote}
+                    </p> */}
 
                     <p key={seasonKey} className={`seasonal-whisper ${seasonKey}`}>
                       {quote}
@@ -331,7 +442,6 @@ return (
                   </div>
 
                   <h1 className="app-title">Daily Checklist</h1>
-                  <p className="app-subtitle">Light, colourful to-dos for a focused day.</p>
                 </header>
 
                 {/* NEW TASK BAR */}
@@ -407,7 +517,6 @@ return (
 
                 {/* JOURNAL INPUT */}
                 <div id="thoughts"></div>
-
                 <div className={`journal-input-wrapper ${moodKey}`}>
                   <input
                     className="journal-input"
@@ -466,8 +575,8 @@ return (
                 </section>
 
                 <a href="#top" className="back-to-top">Back to top ↑</a>
-
                 <div className="section-divider"></div>
+
               </div>
 
               {/* RIGHT COLUMN */}
@@ -477,8 +586,8 @@ return (
                 <WeatherPanel />
               </div>
 
-            </div>
-            {/* CLOSE main-grid */}
+            </main>
+            {/* END MAIN GRID */}
 
             {/* FOOTER */}
             <footer className="QuotesFooter">
@@ -497,11 +606,9 @@ return (
 
               <div id="footer">
                 <p className="inspo-quote fade_on_scroll">
-                  "The Only way to do great work is to love what you do."
+                  "The only way to do great work is to love what you do." ~ Steve Jobs ~
                 </p>
               </div>
-
-              <p className="quote-author">– Steve Jobs</p>
 
               <div className="siteFooter">
                 <p>Made with care by Sara for KUK @ 2026</p>
@@ -511,43 +618,29 @@ return (
 
               <div className="social-icons">
                 <div className="social-links">
-                  <a
-                    href="https://instagram.com/so.co13"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-icon instagram"
-                  >
-                    Instagram
-                  </a>
-
-                  <a
-                    href="https://facebook.com/sara.J.oliver.7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="social-icon facebook"
-                  >
-                    Facebook
-                  </a>
+                  <a href="https://instagram.com/so.co13" target="_blank" rel="noopener noreferrer" className="social-icon instagram">Instagram</a>
+                  <a href="https://facebook.com/sara.J.oliver.7" target="_blank" rel="noopener noreferrer" className="social-icon facebook">Facebook</a>
                 </div>
               </div>
+
             </footer>
 
           </div>
-          {/* CLOSE app-content */}
+          {/* END APP CONTENT */}
 
-        </main>
-        {/* CLOSE app-shell */}
+        </div>
+        {/* END APP SHELL */}
 
       </div>
-      {/* CLOSE app-body */}
+      {/* END APP BODY */}
 
     </div>
-    {/* CLOSE app-container */}
+    {/* END APP CONTAINER */}
 
   </>
-
 )
 
 }
+
 
 export default App

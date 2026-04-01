@@ -88,6 +88,8 @@ export function WeatherPanel() {
   // Time of day logic
   const hour = new Date().getHours();
 
+
+
 // -------------------------
 // TIME OF DAY → timeOfDay
 // -------------------------
@@ -307,9 +309,14 @@ function getGreetingFromTime(timeOfDay) {
       <div className="weather-main-row">
         <div className={`weather-temp-block ${displayedCondition.toLowerCase()}`}>
           <span className={`weather-temp weather-temp-${timeOfDay}`}>
-            {tempC} °C feels like {tempF} °F
+            {tempC}°C • {tempF}°F
+          </span>
+
+          <span className="weather-feelslike">
+            Feels like {detail.feelsLikeC}°C • Humidity {detail.humidity}%
           </span>
         </div>
+
 
         <div className="time-of-day-icon">
           {timeOfDay === "early morning" && <span>🌄</span>}
