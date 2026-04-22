@@ -12,6 +12,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Inspo home cinematic banner](Inspo-home-cinematic-banner.png)
+
 # Seasonal App — Overview
 1. Purpose and Vision
 The Seasonal App is a personalised, time‑aware interface designed to enhance user engagement through adaptive visual design. It shifts dynamically with the time of day and season, creating a more intuitive and emotionally coherent digital environment.
