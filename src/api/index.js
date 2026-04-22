@@ -5,11 +5,7 @@ export async function fetchCurrentWeather(city = 'Evesham,GB') {
     // Direct OpenWeather call for Render
     const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
     const res = await fetch(
-      fetch(
-        'https://reflections-in-light.onrender.com/api/weather'
-      )
-
-      //`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`
     );
     return await res.json();
   } else {
